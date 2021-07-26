@@ -1,12 +1,16 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View } from "react-native";
+import Home from "./components/Home";
+import { UserContext } from "./context/User";
 
 export default function App() {
+	const [User, setUser] = useState("");
+
 	return (
 		<View style={styles.container}>
-			<Text>Open up App.js to start working on your app!</Text>
-			<StatusBar style="auto" />
+			<UserContext.Provider value={User}>
+				<Home setUser={setUser} />
+			</UserContext.Provider>
 		</View>
 	);
 }
