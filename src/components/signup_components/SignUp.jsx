@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native';
-import { Button } from 'react-native-elements/dist/buttons/Button';
 
-const SignUp = () => {
+const SignUp = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.centeredView}>
@@ -23,7 +22,9 @@ const SignUp = () => {
               <Button title='Organisation'></Button> */}
               <Pressable
                 style={[styles.button, styles.buttonOpen]}
-                /* onPress={TAKE TO VOLUNTEER SIGN UP} */
+                onPress={() => {
+                  navigation.navigate('VolunteerSUForm');
+                }}
               >
                 <Text style={styles.textStyle}>Volunteer</Text>
               </Pressable>
