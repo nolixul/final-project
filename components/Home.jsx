@@ -2,6 +2,7 @@ import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Input, Button } from "react-native-elements";
 import { useState } from "react";
+import { Profiler } from "react";
 
 const Home = ({ setUser }) => {
   const [login, setLogin] = useState({
@@ -19,6 +20,12 @@ const Home = ({ setUser }) => {
     const newLogin = { ...login };
     newLogin.email = e;
     setLogin(newLogin);
+  };
+
+  const handleSubmit = () => {
+    /* Retrieve user Profile */
+    /* if user exists takes to the next page, 
+    else, throw error empty input */
   };
 
   console.log(login);
@@ -39,7 +46,11 @@ const Home = ({ setUser }) => {
         onChangeText={(e) => handlePassword(e)}
         value={login.password}
       />
-      <Button title="Login" backgroundColor="red"></Button>
+      <Button
+        title="Login"
+        backgroundColor="red"
+        onPress={handleSubmit}
+      ></Button>
     </>
   );
 };
