@@ -1,13 +1,12 @@
-import React from "react";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { Input, Button } from "react-native-elements";
-import { useState } from "react";
-import { Profiler } from "react";
+import React from 'react';
+import { Input, Button } from 'react-native-elements';
+import { useState } from 'react';
+import SignUp from './SignUp';
 
 const Home = ({ setUser }) => {
   const [login, setLogin] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: ''
   });
 
   const handlePassword = (e) => {
@@ -33,24 +32,25 @@ const Home = ({ setUser }) => {
   return (
     <>
       <Input
-        placeholder="Enter your email address"
-        leftIcon={{ type: "font-awesome", name: "envelope" }}
+        placeholder='Enter your email address'
+        leftIcon={{ type: 'font-awesome', name: 'envelope' }}
         onChangeText={(e) => handleEmail(e)}
         value={login.email}
       />
 
       <Input
-        placeholder="Password"
+        placeholder='Password'
         secureTextEntry={true}
-        leftIcon={{ type: "font-awesome", name: "key" }}
+        leftIcon={{ type: 'font-awesome', name: 'key' }}
         onChangeText={(e) => handlePassword(e)}
         value={login.password}
       />
       <Button
-        title="Login"
-        backgroundColor="red"
+        title='Login'
+        backgroundColor='red'
         onPress={handleSubmit}
       ></Button>
+      <SignUp />
     </>
   );
 };

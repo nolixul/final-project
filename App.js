@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import Home from "./components/Home";
-import { UserContext } from "./context/User";
+import Home from "./src/components/Home";
+import { UserContext } from "./src/context/User";
 
 export default function App() {
 	const [User, setUser] = useState("");
@@ -20,6 +20,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: "#fff",
 		alignItems: "center",
-		justifyContent: "center",
-	},
+		justifyContent: "center"
+	}
 });
