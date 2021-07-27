@@ -19,8 +19,20 @@ const SignUp = () => {
           <View style={styles.modalView}>
             <Text style={styles.modalText}>
               {/*    BUTTON FOR ORGANISATION OR VOLUNTEER TAKES YOU TO THE FORM */}
-              <Button title='Volunteer'></Button>
-              <Button title='Organisation'></Button>
+              {/* <Button title='Volunteer'></Button>
+              <Button title='Organisation'></Button> */}
+              <Pressable
+                style={[styles.button, styles.buttonOpen]}
+                /* onPress={TAKE TO VOLUNTEER SIGN UP} */
+              >
+                <Text style={styles.textStyle}>Volunteer</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.button, styles.buttonOpen]}
+                /* onPress={TAKE TO ORGANISATION SIGN UP} */
+              >
+                <Text style={styles.textStyle}>Organisation</Text>
+              </Pressable>
             </Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
