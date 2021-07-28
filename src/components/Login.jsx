@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { Input, Button } from 'react-native-elements';
-import { useState } from 'react';
-import SignUp from './signup_components/SignUp';
-import { UserContext } from '../context/User';
+import React, { useContext } from "react";
+import { Input, Button } from "react-native-elements";
+import { useState } from "react";
+import SignUp from "./signup_components/SignUp";
+import { UserContext } from "../context/User";
 
 // login page for volunteer/organisation - sign up pop up as well
 
@@ -10,8 +10,8 @@ const Home = React.memo(function Home({ navigation }) {
   // set login details in state, extract User and setUser from context
 
   const [login, setLogin] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const { User, setUser } = useContext(UserContext);
 
@@ -37,8 +37,8 @@ const Home = React.memo(function Home({ navigation }) {
     /* Retrieve user Profile */
     /* if user exists takes to the next page, 
     else, throw error empty input */
-    setUser({ username: 'testUser', password: 'testPassword' });
-    navigation.navigate('Homepage');
+    setUser({ username: "testUser", password: "testPassword" });
+    navigation.navigate("Homepage");
   };
 
   // email address and password inputs, login button and SignUp component which is a pop up
@@ -46,25 +46,25 @@ const Home = React.memo(function Home({ navigation }) {
   return (
     <>
       <Input
-        placeholder='Enter your email address'
-        leftIcon={{ type: 'font-awesome', name: 'envelope' }}
+        placeholder="Enter your email address"
+        leftIcon={{ type: "font-awesome", name: "envelope" }}
         onChangeText={(e) => handleEmail(e)}
         value={login.email}
       />
 
       <Input
-        placeholder='Password'
+        placeholder="Password"
         secureTextEntry={true}
-        leftIcon={{ type: 'font-awesome', name: 'key' }}
+        leftIcon={{ type: "font-awesome", name: "key" }}
         onChangeText={(e) => handlePassword(e)}
         value={login.password}
       />
       <Button
-        title='Login'
-        backgroundColor='red'
+        title="Login"
+        backgroundColor="red"
         onPress={handleSubmit}
       ></Button>
-      <SignUp navigation={navigation} />
+      <SignUp />
     </>
   );
 });

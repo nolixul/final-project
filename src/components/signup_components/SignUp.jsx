@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native';
+import React, { useState } from "react";
+import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
 // Pop up to select whether you want to sign up as volunteer or organisation
 
-const SignUp = ({ navigation }) => {
+const SignUp = React.memo(function SignUp({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.centeredView}>
       <Modal
-        animationType='slide'
+        animationType="slide"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
+          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >
@@ -22,14 +22,14 @@ const SignUp = ({ navigation }) => {
               <Pressable
                 style={[styles.button, styles.buttonOpen]}
                 onPress={() => {
-                  navigation.navigate('VolunteerSUForm');
+                  navigation.navigate("VolunteerSUForm");
                 }}
               >
                 <Text style={styles.textStyle}>Volunteer</Text>
               </Pressable>
               <Pressable
                 style={[styles.button, styles.buttonOpen]}
-                // onPress={navigation.navigate()}
+                /*  onPress={navigation.navigate()} */
               >
                 <Text style={styles.textStyle}>Organisation</Text>
               </Pressable>
@@ -51,50 +51,50 @@ const SignUp = ({ navigation }) => {
       </Pressable>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
   },
   button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: '#F194FF'
+    backgroundColor: "#F194FF",
   },
   buttonClose: {
-    backgroundColor: '#2196F3'
+    backgroundColor: "#2196F3",
   },
   textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center'
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
   },
   modalText: {
     marginBottom: 15,
-    textAlign: 'center'
-  }
+    textAlign: "center",
+  },
 });
 
 export default SignUp;
