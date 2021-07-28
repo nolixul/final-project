@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Input, Button } from 'react-native-elements';
 import { useState } from 'react';
 import SignUp from './signup_components/SignUp';
+import { UserContext } from '../context/User';
 
 const Home = React.memo(function Home({ navigation }) {
   const [login, setLogin] = useState({
     email: '',
     password: ''
   });
+  const { User, setUser } = useContext(UserContext);
 
   const handlePassword = (e) => {
     const newLogin = { ...login };
@@ -25,7 +27,7 @@ const Home = React.memo(function Home({ navigation }) {
     /* Retrieve user Profile */
     /* if user exists takes to the next page, 
     else, throw error empty input */
-    // setUser({ username: 'testUser', password: 'testPassword' }); - NEED TO FIND WAY TO PASS SET USER AS PROPS
+    setUser({ username: 'testUser', password: 'testPassword' });
     navigation.navigate('Homepage');
   };
 

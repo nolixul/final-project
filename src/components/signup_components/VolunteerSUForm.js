@@ -1,7 +1,7 @@
 import React from "react";
 import { Input, Button, CheckBox } from "react-native-elements";
 import { ScreenContainer } from "react-native-screens";
-import SignUp from "./signup_components/SignUp";
+import SignUp from "./SignUp";
 
 // Issue with state being undefined - can navigate to this page no problem with text test
 
