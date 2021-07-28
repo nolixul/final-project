@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native';
 
+// Pop up to select whether you want to sign up as volunteer or organisation
+
 const SignUp = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
@@ -17,9 +19,6 @@ const SignUp = ({ navigation }) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>
-              {/*    BUTTON FOR ORGANISATION OR VOLUNTEER TAKES YOU TO THE FORM */}
-              {/* <Button title='Volunteer'></Button>
-              <Button title='Organisation'></Button> */}
               <Pressable
                 style={[styles.button, styles.buttonOpen]}
                 onPress={() => {
@@ -30,7 +29,7 @@ const SignUp = ({ navigation }) => {
               </Pressable>
               <Pressable
                 style={[styles.button, styles.buttonOpen]}
-                /* onPress={TAKE TO ORGANISATION SIGN UP} */
+                // onPress={navigation.navigate()}
               >
                 <Text style={styles.textStyle}>Organisation</Text>
               </Pressable>

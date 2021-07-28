@@ -4,12 +4,18 @@ import { useState } from 'react';
 import SignUp from './signup_components/SignUp';
 import { UserContext } from '../context/User';
 
+// login page for volunteer/organisation - sign up pop up as well
+
 const Home = React.memo(function Home({ navigation }) {
+  // set login details in state, extract User and setUser from context
+
   const [login, setLogin] = useState({
     email: '',
     password: ''
   });
   const { User, setUser } = useContext(UserContext);
+
+  // function to alter password in login state
 
   const handlePassword = (e) => {
     const newLogin = { ...login };
@@ -17,11 +23,15 @@ const Home = React.memo(function Home({ navigation }) {
     setLogin(newLogin);
   };
 
+  // function to alter username in login state
+
   const handleEmail = (e) => {
     const newLogin = { ...login };
     newLogin.email = e;
     setLogin(newLogin);
   };
+
+  // function to handle what happens then the login button is pressed
 
   const handleSubmit = () => {
     /* Retrieve user Profile */
@@ -30,6 +40,8 @@ const Home = React.memo(function Home({ navigation }) {
     setUser({ username: 'testUser', password: 'testPassword' });
     navigation.navigate('Homepage');
   };
+
+  // email address and password inputs, login button and SignUp component which is a pop up
 
   return (
     <>
