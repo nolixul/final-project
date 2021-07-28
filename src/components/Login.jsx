@@ -1,9 +1,9 @@
 import React from 'react';
 import { Input, Button } from 'react-native-elements';
 import { useState } from 'react';
-import SignUp from './SignUp';
+import SignUp from './signup_components/SignUp';
 
-const Home = ({ setUser }) => {
+const Home = React.memo(function Home({ navigation }) {
   const [login, setLogin] = useState({
     email: '',
     password: ''
@@ -25,9 +25,9 @@ const Home = ({ setUser }) => {
     /* Retrieve user Profile */
     /* if user exists takes to the next page, 
     else, throw error empty input */
+    // setUser({ username: 'testUser', password: 'testPassword' }); - NEED TO FIND WAY TO PASS SET USER AS PROPS
+    navigation.navigate('Homepage');
   };
-
-  console.log(login);
 
   return (
     <>
@@ -50,9 +50,9 @@ const Home = ({ setUser }) => {
         backgroundColor='red'
         onPress={handleSubmit}
       ></Button>
-      <SignUp />
+      <SignUp navigation={navigation} />
     </>
   );
-};
+});
 
 export default Home;
