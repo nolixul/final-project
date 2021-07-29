@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import { Input, Button } from "react-native-elements";
 import { useState } from "react";
-import SignUp from "./signup_components/SignUp";
 import { UserContext } from "../context/User";
 
 // login page for volunteer/organisation - sign up pop up as well
 
-const Home = React.memo(function Home({ navigation }) {
+const Login = React.memo(function Home({ navigation }) {
   // set login details in state, extract User and setUser from context
 
   const [login, setLogin] = useState({
@@ -64,9 +63,15 @@ const Home = React.memo(function Home({ navigation }) {
         backgroundColor="red"
         onPress={handleSubmit}
       ></Button>
-      <SignUp />
+      <Button
+        title="Sign up"
+        backgroundColor="red"
+        onPress={() => {
+          navigation.navigate("SignUpForm");
+        }}
+      ></Button>
     </>
   );
 });
 
-export default Home;
+export default Login;

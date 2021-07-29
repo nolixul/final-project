@@ -4,6 +4,7 @@ import { UserContext } from "./src/context/User";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Homepage from "./src/components/Homepage";
+import SignUpForm from "./src/components/signup_components/SignUpForm";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
 					<Stack.Screen name="Login" component={Login} />
 
 					<Stack.Screen name="Homepage" component={Homepage} />
+					<Stack.Screen name="SignUpForm" component={SignUpForm} />
 				</Stack.Navigator>
 			</UserContext.Provider>
 		</NavigationContainer>
