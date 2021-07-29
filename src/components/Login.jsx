@@ -40,7 +40,7 @@ const Login = React.memo(function Home({ navigation }) {
     navigation.navigate("Homepage");
   };
 
-  // email address and password inputs, login button and SignUp component which is a pop up
+  // email address and password inputs, login button and SignUp button
 
   return (
     <>

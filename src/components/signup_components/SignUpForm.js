@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Input, Button, CheckBox } from "react-native-elements";
 
 // Volunteer sign up form page
-// Issue with state being undefined - can navigate to this page no problem with text test
 
 const SignUpForm = () => {
 	const [checked, setChecked] = useState(false);
@@ -17,7 +16,6 @@ const SignUpForm = () => {
 				title="Community support"
 				checkedIcon="dot-circle-o"
 				uncheckedIcon="circle-o"
-				//checked={this.state.checked}
 				onPress={() => {
 					setChecked(!checked);
 				}}
