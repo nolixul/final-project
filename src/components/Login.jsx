@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Input, Button } from "react-native-elements";
 import { useState } from "react";
 import { UserContext } from "../context/User";
+import { StyleSheet, View } from "react-native";
 
 // login page for volunteer/organisation - sign up pop up as well
 
@@ -44,34 +45,45 @@ const Login = React.memo(function Home({ navigation }) {
 
   return (
     <>
-      <Input
-        placeholder="Enter your email address"
-        leftIcon={{ type: "font-awesome", name: "envelope" }}
-        onChangeText={(e) => handleEmail(e)}
-        value={login.email}
-      />
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Input
+          placeholder="Enter your email address"
+          leftIcon={{ type: "font-awesome", name: "envelope" }}
+          onChangeText={(e) => handleEmail(e)}
+          value={login.email}
+        />
 
-      <Input
-        placeholder="Password"
-        secureTextEntry={true}
-        leftIcon={{ type: "font-awesome", name: "key" }}
-        onChangeText={(e) => handlePassword(e)}
-        value={login.password}
-      />
-      <Button
-        title="Login"
-        backgroundColor="red"
-        onPress={handleSubmit}
-      ></Button>
-      <Button
-        title="Sign up"
-        backgroundColor="red"
-        onPress={() => {
-          navigation.navigate("SignUpForm");
-        }}
-      ></Button>
+        <Input
+          placeholder="Password"
+          secureTextEntry={true}
+          leftIcon={{ type: "font-awesome", name: "key" }}
+          onChangeText={(e) => handlePassword(e)}
+          value={login.password}
+        />
+        <Button
+          title="Login"
+          onPress={handleSubmit}
+          style={styles.button}
+        ></Button>
+        <Button
+          title="Sign up"
+          onPress={() => {
+            navigation.navigate("SignUpForm");
+          }}
+          style={styles.button}
+        ></Button>
+      </View>
     </>
   );
+});
+
+const styles = StyleSheet.create({
+  button: {
+    width: 200,
+    marginTop: 10,
+    padding: 5,
+    borderRadius: 50,
+  },
 });
 
 export default Login;
