@@ -3,7 +3,6 @@ import { Input, Button } from "react-native-elements";
 import { useState } from "react";
 import { UserContext } from "../context/User";
 import { StyleSheet, View } from "react-native";
-import { Header } from "react-native-elements";
 
 // login page for volunteer/organisation - sign up pop up as well
 
@@ -46,12 +45,6 @@ const Login = React.memo(function Home({ navigation }) {
 
   return (
     <>
-      {/* <Header
-        placement="left"
-        leftComponent={{ icon: "menu", color: "#fff" }}
-        centerComponent={{ text: "MY TITLE", style: { color: "#fff" } }}
-        rightComponent={{ icon: "home", color: "#fff" }}
-      /> */}
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Input
           placeholder="Enter your email address"
