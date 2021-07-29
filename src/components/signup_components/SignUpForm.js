@@ -1,26 +1,19 @@
 import React, { useState } from "react";
 import { Input, Button, CheckBox } from "react-native-elements";
+import { Text } from "react-native";
 
 // Volunteer sign up form page
 
 const SignUpForm = () => {
-	const [checked, setChecked] = useState(false);
+	const [checkedCS, setCheckedCS] = useState(false);
+	const [checkedMH, setCheckedMH] = useState(false);
+	const [checkedEN, setCheckedEN] = useState(false);
+	const [checkedAN, setCheckedAN] = useState(false);
 
 	return (
 		<>
 			{/* CHOOSE AVATAR */}
-			{/* SET INTERESTS - checkboxes */}
 
-			<CheckBox
-				center
-				title="Community support"
-				checkedIcon="dot-circle-o"
-				uncheckedIcon="circle-o"
-				onPress={() => {
-					setChecked(!checked);
-				}}
-				checked={checked}
-			/>
 			<Input
 				placeholder="First Name"
 				leftIcon={{ type: "font-awesome", name: "user" }}
@@ -47,6 +40,44 @@ const SignUpForm = () => {
 				leftIcon={{ type: "font-awesome", name: "key" }}
 				/* onChangeText={(e) => handlePassword(e)} */
 				/* value={login.password} */
+			/>
+
+			<Text>Interests</Text>
+			<CheckBox
+				title="Community support"
+				checkedIcon="dot-circle-o"
+				uncheckedIcon="circle-o"
+				onPress={() => {
+					setCheckedCS(!checkedCS);
+				}}
+				checked={checkedCS}
+			/>
+			<CheckBox
+				title="Mental Health"
+				checkedIcon="dot-circle-o"
+				uncheckedIcon="circle-o"
+				onPress={() => {
+					setCheckedMH(!checkedMH);
+				}}
+				checked={checkedMH}
+			/>
+			<CheckBox
+				title="Environment"
+				checkedIcon="dot-circle-o"
+				uncheckedIcon="circle-o"
+				onPress={() => {
+					setCheckedEN(!checkedEN);
+				}}
+				checked={checkedEN}
+			/>
+			<CheckBox
+				title="Animals"
+				checkedIcon="dot-circle-o"
+				uncheckedIcon="circle-o"
+				onPress={() => {
+					setCheckedAN(!checkedAN);
+				}}
+				checked={checkedAN}
 			/>
 			<Button
 				title="Sign Up"
