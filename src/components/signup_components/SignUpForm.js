@@ -18,6 +18,7 @@ const SignUpForm = () => {
 				<Switch value={false} color='orange' onValueChange />
 				{/* CHOOSE AVATAR */}
 				<VolunteerSUForm />
+
 				<Button
 					title='Sign Up'
 					backgroundColor='red'

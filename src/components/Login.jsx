@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { Input, Button } from "react-native-elements";
-import { useState } from "react";
-import { UserContext } from "../context/User";
-import { StyleSheet, View } from "react-native";
+import React, { useContext } from 'react';
+import { useState } from 'react';
+import { UserContext } from '../context/User';
+import { StyleSheet, View } from 'react-native';
+import { Layout, Button, Input } from '@ui-kitten/components';
 
 // login page for volunteer/organisation - sign up pop up as well
 
@@ -10,8 +10,8 @@ const Login = React.memo(function Home({ navigation }) {
   // set login details in state, extract User and setUser from context
 
   const [login, setLogin] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: ''
   });
   const { User, setUser } = useContext(UserContext);
 
@@ -37,42 +37,44 @@ const Login = React.memo(function Home({ navigation }) {
     /* Retrieve user Profile */
     /* if user exists takes to the next page, 
     else, throw error empty input */
-    setUser({ username: "testUser", password: "testPassword" });
-    navigation.navigate("Homepage");
+    setUser({ username: 'testUser', password: 'testPassword' });
+    navigation.navigate('Homepage');
   };
 
   // email address and password inputs, login button and SignUp button
 
   return (
     <>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Input
-          placeholder="Enter your email address"
-          leftIcon={{ type: "font-awesome", name: "envelope" }}
-          onChangeText={(e) => handleEmail(e)}
-          value={login.email}
-        />
+      <Layout
+        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+      >
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <Input
+            placeholder='Enter your email address'
+            leftIcon={{ type: 'font-awesome', name: 'envelope' }}
+            onChangeText={(e) => handleEmail(e)}
+            value={login.email}
+          />
 
-        <Input
-          placeholder="Password"
-          secureTextEntry={true}
-          leftIcon={{ type: "font-awesome", name: "key" }}
-          onChangeText={(e) => handlePassword(e)}
-          value={login.password}
-        />
-        <Button
-          title="Login"
-          onPress={handleSubmit}
-          style={styles.button}
-        ></Button>
-        <Button
-          title="Sign up"
-          onPress={() => {
-            navigation.navigate("SignUpForm");
-          }}
-          style={styles.button}
-        ></Button>
-      </View>
+          <Input
+            placeholder='Password'
+            secureTextEntry={true}
+            leftIcon={{ type: 'font-awesome', name: 'key' }}
+            onChangeText={(e) => handlePassword(e)}
+            value={login.password}
+          />
+          <Button onPress={handleSubmit}>Login</Button>
+          <Button
+            onPress={() => {
+              navigation.navigate('SignUpForm');
+            }}
+          >
+            Sign Up
+          </Button>
+        </View>
+      </Layout>
     </>
   );
 });
@@ -82,8 +84,8 @@ const styles = StyleSheet.create({
     width: 200,
     marginTop: 10,
     padding: 5,
-    borderRadius: 50,
-  },
+    borderRadius: 50
+  }
 });
 
 export default Login;
