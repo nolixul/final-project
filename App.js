@@ -7,7 +7,8 @@ import Homepage from "./src/components/Homepage";
 import SignUpForm from "./src/components/signup_components/SignUpForm";
 import { default as theme } from "./src/theme/custom-theme (4).json";
 import * as eva from "@eva-design/eva";
-import { ApplicationProvider } from "@ui-kitten/components";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
 
 const Stack = createStackNavigator();
 
@@ -15,24 +16,29 @@ export default function App() {
 	const [User, setUser] = useState("");
 	// Can't pass props in between stack.screen tags, must declare screens in one self closing tag for react navigation to work. Use context.
 
-	return (
-		<ApplicationProvider {...eva} theme={{ ...eva.dark, ...theme }}>
-			<NavigationContainer>
-				<UserContext.Provider value={{ User, setUser }}>
-					<Stack.Navigator>
-						<Stack.Screen name='Login' component={Login} />
+	// Declare navigation stacks elsewhere - see ui kitten for details. Get rid of auto header
 
-						<Stack.Screen name='Homepage' component={Homepage} />
-						<Stack.Screen
-							name='SignUpForm'
-							component={SignUpForm}
-							options={() => ({
-								title: "Sign Up"
-							})}
-						/>
-					</Stack.Navigator>
-				</UserContext.Provider>
-			</NavigationContainer>
-		</ApplicationProvider>
+	return (
+		<>
+			<IconRegistry icons={EvaIconsPack} />
+			<ApplicationProvider {...eva} theme={{ ...eva.dark, ...theme }}>
+				<NavigationContainer headerMode='none'>
+					<UserContext.Provider value={{ User, setUser }}>
+						<Stack.Navigator>
+							<Stack.Screen name='Login' component={Login} />
+
+							<Stack.Screen name='Homepage' component={Homepage} />
+							<Stack.Screen
+								name='SignUpForm'
+								component={SignUpForm}
+								options={() => ({
+									title: "Sign Up"
+								})}
+							/>
+						</Stack.Navigator>
+					</UserContext.Provider>
+				</NavigationContainer>
+			</ApplicationProvider>
+		</>
 	);
 }

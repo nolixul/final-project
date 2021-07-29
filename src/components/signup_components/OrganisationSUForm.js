@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { Input } from "react-native-elements";
+import { Input } from "@ui-kitten/components";
 
 const OrganisationSUForm = () => {
 	return (
