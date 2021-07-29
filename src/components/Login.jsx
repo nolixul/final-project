@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { Input, Button } from "react-native-elements";
 import { useState } from "react";
-import SignUp from "./signup_components/SignUp";
 import { UserContext } from "../context/User";
+import { StyleSheet, View } from "react-native";
 
 // login page for volunteer/organisation - sign up pop up as well
 
-const Home = React.memo(function Home({ navigation }) {
+const Login = React.memo(function Home({ navigation }) {
   // set login details in state, extract User and setUser from context
 
   const [login, setLogin] = useState({
@@ -41,32 +41,49 @@ const Home = React.memo(function Home({ navigation }) {
     navigation.navigate("Homepage");
   };
 
-  // email address and password inputs, login button and SignUp component which is a pop up
+  // email address and password inputs, login button and SignUp button
 
   return (
     <>
-      <Input
-        placeholder="Enter your email address"
-        leftIcon={{ type: "font-awesome", name: "envelope" }}
-        onChangeText={(e) => handleEmail(e)}
-        value={login.email}
-      />
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Input
+          placeholder="Enter your email address"
+          leftIcon={{ type: "font-awesome", name: "envelope" }}
+          onChangeText={(e) => handleEmail(e)}
+          value={login.email}
+        />
 
-      <Input
-        placeholder="Password"
-        secureTextEntry={true}
-        leftIcon={{ type: "font-awesome", name: "key" }}
-        onChangeText={(e) => handlePassword(e)}
-        value={login.password}
-      />
-      <Button
-        title="Login"
-        backgroundColor="red"
-        onPress={handleSubmit}
-      ></Button>
-      <SignUp />
+        <Input
+          placeholder="Password"
+          secureTextEntry={true}
+          leftIcon={{ type: "font-awesome", name: "key" }}
+          onChangeText={(e) => handlePassword(e)}
+          value={login.password}
+        />
+        <Button
+          title="Login"
+          onPress={handleSubmit}
+          style={styles.button}
+        ></Button>
+        <Button
+          title="Sign up"
+          onPress={() => {
+            navigation.navigate("SignUpForm");
+          }}
+          style={styles.button}
+        ></Button>
+      </View>
     </>
   );
 });
 
-export default Home;
+const styles = StyleSheet.create({
+  button: {
+    width: 200,
+    marginTop: 10,
+    padding: 5,
+    borderRadius: 50,
+  },
+});
+
+export default Login;
