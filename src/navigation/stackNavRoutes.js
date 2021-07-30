@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "../components/Login";
-import Homepage from "../components/Homepage";
+import Homepage from "../components/homepage_components/Homepage";
 import SignUpForm from "../components/signup_components/SignUpForm";
 import OrganisationSUForm from "../components/signup_components/OrganisationSUForm";
 import VolunteerSUForm from "../components/signup_components/VolunteerSUForm";
