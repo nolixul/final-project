@@ -5,11 +5,11 @@ import {
 	Icon,
 	Layout,
 	TopNavigation,
-	TopNavigationAction,
+	TopNavigationAction
 } from "@ui-kitten/components";
-import { DrawerNavigation } from "../navigation/drawernavigation";
+import { DrawerNavigation } from "../../navigation/drawernavigation";
 
-const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
+const BackIcon = (props) => <Icon {...props} name='arrow-back' />;
 
 // Homepage
 const Homepage = ({ navigation }) => {
@@ -25,8 +25,8 @@ const Homepage = ({ navigation }) => {
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
 				<TopNavigation
-					title="MyApp"
-					alignment="center"
+					title='MyApp'
+					alignment='center'
 					accessoryLeft={BackAction}
 				/>
 				<Divider />
