@@ -1,31 +1,69 @@
 import React from "react";
-import { Button, Switch } from "react-native-elements";
-import { View } from "react-native";
-import VolunteerSUForm from "./VolunteerSUForm";
+import { SafeAreaView } from "react-native";
+import {
+	Divider,
+	Icon,
+	Layout,
+	Button,
+	TopNavigation,
+	TopNavigationAction
+} from "@ui-kitten/components";
+import { StyleSheet } from "react-native";
+
+const BackIcon = (props) => <Icon {...props} name='arrow-back' />;
 
 // Sign up page
 
-const SignUpForm = () => {
-	//   const [isVolunteer, setIsVolunteer] = useState(false);
+const SignUpForm = ({ navigation }) => {
+	const navigateBack = () => {
+		navigation.goBack();
+	};
 
-	// LOOK AT HOW TO IMPLEMENT REACT NATIVE ELEMENTS SWITCH WITH ONVALUECHANGE
-	// use this to set isVolunteer - this will determine the form shown
-	// extract out forms and toggle which one is shown based on isVolunteer
+	const BackAction = () => (
+		<TopNavigationAction icon={BackIcon} onPress={navigateBack} />
+	);
 
 	return (
 		<>
-			<View style={{ flex: 1, justifyContent: "center" }}>
-				<Switch value={false} color='orange' onValueChange />
-				{/* CHOOSE AVATAR */}
-				<VolunteerSUForm />
-				<Button
-					title='Sign Up'
-					backgroundColor='red'
-					/*   onPress={handleSubmit} */
-				></Button>
-			</View>
+			<SafeAreaView style={{ flex: 1 }}>
+				<TopNavigation
+					title='MyApp'
+					alignment='center'
+					accessoryLeft={BackAction}
+				/>
+				<Divider />
+				<Layout
+					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+				>
+					<Button
+						style={styles.button}
+						onPress={() => {
+							navigation.navigate("VolunteerSUForm");
+						}}
+					>
+            Volunteer
+					</Button>
+					<Button
+						style={styles.button}
+						onPress={() => {
+							navigation.navigate("OrganisationSUForm");
+						}}
+					>
+            Organisation
+					</Button>
+				</Layout>
+			</SafeAreaView>
 		</>
 	);
 };
+
+const styles = StyleSheet.create({
+	button: {
+		width: 200,
+		marginTop: 10,
+		padding: 5,
+		borderRadius: 50
+	}
+});
 
 export default SignUpForm;

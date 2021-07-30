@@ -1,15 +1,41 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
-import { Input, CheckBox } from "react-native-elements";
+import { SafeAreaView } from "react-native";
+import {
+	Input,
+	Text,
+	CheckBox,
+	Button,
+	TopNavigation,
+	Divider,
+	TopNavigationAction,
+	Icon
+} from "@ui-kitten/components";
 
-const VolunteerSUForm = () => {
+const BackIcon = (props) => <Icon {...props} name='arrow-back' />;
+
+const VolunteerSUForm = ({ navigation }) => {
 	const [checkedCS, setCheckedCS] = useState(false);
 	const [checkedMH, setCheckedMH] = useState(false);
 	const [checkedEN, setCheckedEN] = useState(false);
 	const [checkedAN, setCheckedAN] = useState(false);
 
+	const navigateBack = () => {
+		navigation.goBack();
+	};
+
+	const BackAction = () => (
+		<TopNavigationAction icon={BackIcon} onPress={navigateBack} />
+	);
+
 	return (
-		<View>
+		<SafeAreaView>
+			<TopNavigation
+				title='MyApp'
+				alignment='center'
+				accessoryLeft={BackAction}
+			/>
+			<Divider />
+
 			<Input
 				placeholder='First Name'
 				leftIcon={{ type: "font-awesome", name: "user" }}
@@ -24,7 +50,7 @@ const VolunteerSUForm = () => {
 			/>
 
 			<Input
-				placeholder='Enter your email address'
+				placeholder='Email Address'
 				leftIcon={{ type: "font-awesome", name: "envelope" }}
 				/*  onChangeText={(e) => handleEmail(e)} */
 				/* value={login.email} */
@@ -40,42 +66,36 @@ const VolunteerSUForm = () => {
 
 			<Text>Interests</Text>
 			<CheckBox
-				title='Community support'
-				checkedIcon='dot-circle-o'
-				uncheckedIcon='circle-o'
-				onPress={() => {
-					setCheckedCS(!checkedCS);
-				}}
 				checked={checkedCS}
-			/>
+				onChange={(nextChecked) => setCheckedCS(nextChecked)}
+			>
+				{(evaProps) => <Text {...evaProps}>Community Support</Text>}
+			</CheckBox>
 			<CheckBox
-				title='Mental Health'
-				checkedIcon='dot-circle-o'
-				uncheckedIcon='circle-o'
-				onPress={() => {
-					setCheckedMH(!checkedMH);
-				}}
 				checked={checkedMH}
-			/>
+				onChange={(nextChecked) => setCheckedMH(nextChecked)}
+			>
+				{(evaProps) => <Text {...evaProps}>Mental Health</Text>}
+			</CheckBox>
 			<CheckBox
-				title='Environment'
-				checkedIcon='dot-circle-o'
-				uncheckedIcon='circle-o'
-				onPress={() => {
-					setCheckedEN(!checkedEN);
-				}}
 				checked={checkedEN}
-			/>
+				onChange={(nextChecked) => setCheckedEN(nextChecked)}
+			>
+				{(evaProps) => <Text {...evaProps}>Environment</Text>}
+			</CheckBox>
 			<CheckBox
-				title='Animals'
-				checkedIcon='dot-circle-o'
-				uncheckedIcon='circle-o'
-				onPress={() => {
-					setCheckedAN(!checkedAN);
-				}}
 				checked={checkedAN}
-			/>
-		</View>
+				onChange={(nextChecked) => setCheckedAN(nextChecked)}
+			>
+				{(evaProps) => <Text {...evaProps}>Animals</Text>}
+			</CheckBox>
+			<Button
+
+				/*   onPress={handleSubmit} */
+			>
+        Sign Up
+			</Button>
+		</SafeAreaView>
 	);
 };
 

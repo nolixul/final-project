@@ -1,10 +1,34 @@
 import React from "react";
-import { View } from "react-native";
-import { Input } from "react-native-elements";
+import { SafeAreaView } from "react-native";
+import {
+	Input,
+	Button,
+	TopNavigation,
+	Divider,
+	Icon,
+	TopNavigationAction
+} from "@ui-kitten/components";
 
-const OrganisationSUForm = () => {
+const BackIcon = (props) => <Icon {...props} name='arrow-back' />;
+
+const OrganisationSUForm = ({ navigation }) => {
+	const navigateBack = () => {
+		navigation.goBack();
+	};
+
+	const BackAction = () => (
+		<TopNavigationAction icon={BackIcon} onPress={navigateBack} />
+	);
+
 	return (
-		<View>
+		<SafeAreaView>
+			<TopNavigation
+				title='MyApp'
+				alignment='center'
+				accessoryLeft={BackAction}
+			/>
+			<Divider />
+
 			<Input
 				placeholder='Organisation Name'
 				leftIcon={{ type: "font-awesome", name: "user" }}
@@ -26,7 +50,13 @@ const OrganisationSUForm = () => {
 				/* onChangeText={(e) => handlePassword(e)} */
 				/* value={login.password} */
 			/>
-		</View>
+			<Button
+
+				/*   onPress={handleSubmit} */
+			>
+        Sign Up
+			</Button>
+		</SafeAreaView>
 	);
 };
 
