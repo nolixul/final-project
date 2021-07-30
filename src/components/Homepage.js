@@ -1,12 +1,39 @@
 import React from "react";
-import { Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import {
+	Divider,
+	Icon,
+	Layout,
+	TopNavigation,
+	TopNavigationAction,
+} from "@ui-kitten/components";
+import { DrawerNavigation } from "../navigation/drawernavigation";
 
-// Homepage with an if statement to render either volunteer or organisation page
+const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
 
-const Homepage = () => {
+// Homepage
+const Homepage = ({ navigation }) => {
+	const navigateBack = () => {
+		navigation.goBack();
+	};
+
+	const BackAction = () => (
+		<TopNavigationAction icon={BackIcon} onPress={navigateBack} />
+	);
+
 	return (
 		<>
-			<Text>TEST - you can see the homepage</Text>
+			<SafeAreaView style={{ flex: 1 }}>
+				<TopNavigation
+					title="MyApp"
+					alignment="center"
+					accessoryLeft={BackAction}
+				/>
+				<Divider />
+				<Layout style={{ flex: 1 }}>
+					<DrawerNavigation />
+				</Layout>
+			</SafeAreaView>
 		</>
 	);
 };

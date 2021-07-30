@@ -6,6 +6,7 @@ import * as eva from "@eva-design/eva";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { LoginNavigator } from "./src/navigation/stackNavRoutes";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
 	const [User, setUser] = useState("");
@@ -17,11 +18,13 @@ export default function App() {
 		<>
 			<IconRegistry icons={EvaIconsPack} />
 			<ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
-				<NavigationContainer headerMode='none'>
-					<UserContext.Provider value={{ User, setUser }}>
-						<LoginNavigator />
-					</UserContext.Provider>
-				</NavigationContainer>
+				<SafeAreaProvider>
+					<NavigationContainer headerMode="none">
+						<UserContext.Provider value={{ User, setUser }}>
+							<LoginNavigator />
+						</UserContext.Provider>
+					</NavigationContainer>
+				</SafeAreaProvider>
 			</ApplicationProvider>
 		</>
 	);
