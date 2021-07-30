@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-import Login from "./src/components/Login";
 import { UserContext } from "./src/context/User";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import Homepage from "./src/components/Homepage";
-import SignUpForm from "./src/components/signup_components/SignUpForm";
 import { default as theme } from "./src/theme/custom-theme (4).json";
 import * as eva from "@eva-design/eva";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
-
-const Stack = createStackNavigator();
+import { LoginNavigator } from "./src/navigation/stackNavRoutes";
 
 export default function App() {
 	const [User, setUser] = useState("");
@@ -24,18 +19,7 @@ export default function App() {
 			<ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
 				<NavigationContainer headerMode='none'>
 					<UserContext.Provider value={{ User, setUser }}>
-						<Stack.Navigator>
-							<Stack.Screen name='Login' component={Login} />
-
-							<Stack.Screen name='Homepage' component={Homepage} />
-							<Stack.Screen
-								name='SignUpForm'
-								component={SignUpForm}
-								options={() => ({
-									title: "Sign Up"
-								})}
-							/>
-						</Stack.Navigator>
+						<LoginNavigator />
 					</UserContext.Provider>
 				</NavigationContainer>
 			</ApplicationProvider>
