@@ -1,41 +1,61 @@
 import React from "react";
 import { SafeAreaView } from "react-native";
-import { Input, Button, Layout } from "@ui-kitten/components";
+import {
+	Input,
+	Button,
+	TopNavigation,
+	Divider,
+	Icon,
+	TopNavigationAction
+} from "@ui-kitten/components";
 
-const OrganisationSUForm = () => {
+const BackIcon = (props) => <Icon {...props} name='arrow-back' />;
+
+const OrganisationSUForm = ({ navigation }) => {
+	const navigateBack = () => {
+		navigation.goBack();
+	};
+
+	const BackAction = () => (
+		<TopNavigationAction icon={BackIcon} onPress={navigateBack} />
+	);
+
 	return (
 		<SafeAreaView>
-			<Layout
-				style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+			<TopNavigation
+				title='MyApp'
+				alignment='center'
+				accessoryLeft={BackAction}
+			/>
+			<Divider />
+
+			<Input
+				placeholder='Organisation Name'
+				leftIcon={{ type: "font-awesome", name: "user" }}
+				/* onChangeText={(e) => handleEmail(e)} */
+				/* value={login.email} */
+			/>
+
+			<Input
+				placeholder='Enter your email address'
+				leftIcon={{ type: "font-awesome", name: "envelope" }}
+				/*  onChangeText={(e) => handleEmail(e)} */
+				/* value={login.email} */
+			/>
+
+			<Input
+				placeholder='Password'
+				secureTextEntry={true}
+				leftIcon={{ type: "font-awesome", name: "key" }}
+				/* onChangeText={(e) => handlePassword(e)} */
+				/* value={login.password} */
+			/>
+			<Button
+
+				/*   onPress={handleSubmit} */
 			>
-				<Input
-					placeholder='Organisation Name'
-					leftIcon={{ type: "font-awesome", name: "user" }}
-					/* onChangeText={(e) => handleEmail(e)} */
-					/* value={login.email} */
-				/>
-
-				<Input
-					placeholder='Enter your email address'
-					leftIcon={{ type: "font-awesome", name: "envelope" }}
-					/*  onChangeText={(e) => handleEmail(e)} */
-					/* value={login.email} */
-				/>
-
-				<Input
-					placeholder='Password'
-					secureTextEntry={true}
-					leftIcon={{ type: "font-awesome", name: "key" }}
-					/* onChangeText={(e) => handlePassword(e)} */
-					/* value={login.password} */
-				/>
-				<Button
-
-					/*   onPress={handleSubmit} */
-				>
-          Sign Up
-				</Button>
-			</Layout>
+        Sign Up
+			</Button>
 		</SafeAreaView>
 	);
 };
