@@ -7,6 +7,7 @@ import {
 	TopNavigation,
 	TopNavigationAction,
 } from "@ui-kitten/components";
+import { DrawerNavigation } from "../navigation/drawernavigation";
 
 const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
 
@@ -29,9 +30,9 @@ const Homepage = ({ navigation }) => {
 					accessoryLeft={BackAction}
 				/>
 				<Divider />
-				<Layout
-					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-				></Layout>
+				<Layout style={{ flex: 1 }}>
+					<DrawerNavigation />
+				</Layout>
 			</SafeAreaView>
 		</>
 	);
