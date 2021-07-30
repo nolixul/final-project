@@ -74,8 +74,11 @@ const Login = React.memo(function Home({ navigation }) {
               onChangeText={(e) => handlePassword(e)}
               value={login.password}
             />
-            <Button onPress={handleSubmit}>Login</Button>
+            <Button style={styles.button} onPress={handleSubmit}>
+              Login
+            </Button>
             <Button
+              style={styles.button}
               onPress={() => {
                 navigation.navigate('SignUpForm');
               }}

@@ -1,7 +1,5 @@
 import React from "react";
-import { Switch } from "react-native-elements";
 import { SafeAreaView } from "react-native";
-import VolunteerSUForm from "./VolunteerSUForm";
 import {
 	Divider,
 	Icon,
@@ -10,18 +8,13 @@ import {
 	TopNavigation,
 	TopNavigationAction
 } from "@ui-kitten/components";
+import { StyleSheet } from "react-native";
 
 const BackIcon = (props) => <Icon {...props} name='arrow-back' />;
 
 // Sign up page
 
 const SignUpForm = ({ navigation }) => {
-	//   const [isVolunteer, setIsVolunteer] = useState(false);
-
-	// LOOK AT HOW TO IMPLEMENT REACT NATIVE ELEMENTS SWITCH WITH ONVALUECHANGE
-	// use this to set isVolunteer - this will determine the form shown
-	// extract out forms and toggle which one is shown based on isVolunteer
-
 	const navigateBack = () => {
 		navigation.goBack();
 	};
@@ -42,20 +35,35 @@ const SignUpForm = ({ navigation }) => {
 				<Layout
 					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
 				>
-					<Switch value={false} color='orange' onValueChange />
-					{/* CHOOSE AVATAR */}
-					<VolunteerSUForm />
-
 					<Button
-
-						/*   onPress={handleSubmit} */
+						style={styles.button}
+						onPress={() => {
+							navigation.navigate("VolunteerSUForm");
+						}}
 					>
-            Sign Up
+            Volunteer
+					</Button>
+					<Button
+						style={styles.button}
+						onPress={() => {
+							navigation.navigate("OrganisationSUForm");
+						}}
+					>
+            Organisation
 					</Button>
 				</Layout>
 			</SafeAreaView>
 		</>
 	);
 };
+
+const styles = StyleSheet.create({
+	button: {
+		width: 200,
+		marginTop: 10,
+		padding: 5,
+		borderRadius: 50
+	}
+});
 
 export default SignUpForm;
