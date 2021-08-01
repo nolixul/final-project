@@ -45,8 +45,7 @@ const Login = React.memo(function Home({ navigation }) {
     /* if user exists takes to the next page, 
     else, throw error empty input */
     setUser({ username: "testUser", password: "testPassword" });
-    // navigation.navigate("Homepage");
-    navigation.navigate("VolHomepage");
+    navigation.navigate("Homepage");
   };
 
   // email address and password inputs, login button and SignUp button
