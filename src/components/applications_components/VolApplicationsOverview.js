@@ -78,7 +78,6 @@ const VolApplication = ({ navigation }) => {
 const styles = StyleSheet.create({
 	container: {
 		minHeight: 128,
-		justifyContent: "center",
 	},
 });
 
