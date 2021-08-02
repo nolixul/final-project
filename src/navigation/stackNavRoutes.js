@@ -12,6 +12,8 @@ import SignUpForm from "../components/signup_components/SignUpForm";
 import OrganisationSUForm from "../components/signup_components/OrganisationSUForm";
 import VolunteerSUForm from "../components/signup_components/VolunteerSUForm";
 
+// Declaring stack navigation independently of app component
+
 const { Navigator, Screen } = createStackNavigator();
 
 export const LoginNavigator = () => (
