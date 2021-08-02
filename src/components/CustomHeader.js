@@ -7,7 +7,7 @@ import {
 
 const BackIcon = (props) => <Icon {...props} name='arrow-back' />;
 
-const CustomHeader = ({ navigation }) => {
+const CustomHeader = ({ navigation, isSignUp }) => {
 	const navigateBack = () => {
 		navigation.goBack();
 	};
@@ -16,13 +16,17 @@ const CustomHeader = ({ navigation }) => {
 		<TopNavigationAction icon={BackIcon} onPress={navigateBack} />
 	);
 
-	return (
-		<TopNavigation
-			title='MyApp'
-			alignment='center'
-			accessoryLeft={BackAction}
-		/>
-	);
+	if (!isSignUp) {
+		return <></>;
+	} else {
+		return (
+			<TopNavigation
+				title='MyApp'
+				alignment='center'
+				accessoryLeft={BackAction}
+			/>
+		);
+	}
 };
 
 export default CustomHeader;

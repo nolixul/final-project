@@ -1,36 +1,16 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-	Divider,
-	Icon,
-	Layout,
-	Button,
-	TopNavigation,
-	TopNavigationAction,
-} from "@ui-kitten/components";
+import { Divider, Layout, Button } from "@ui-kitten/components";
 import { StyleSheet } from "react-native";
-
-const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
+import CustomHeader from "../CustomHeader";
 
 // Sign up page
 
 const SignUpForm = ({ navigation }) => {
-	const navigateBack = () => {
-		navigation.goBack();
-	};
-
-	const BackAction = () => (
-		<TopNavigationAction icon={BackIcon} onPress={navigateBack} />
-	);
-
 	return (
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
-				<TopNavigation
-					title="MyApp"
-					alignment="center"
-					accessoryLeft={BackAction}
-				/>
+				<CustomHeader isSignUp={true} />
 				<Divider />
 				<Layout
 					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
@@ -62,8 +42,8 @@ const styles = StyleSheet.create({
 		width: 200,
 		marginTop: 10,
 		padding: 5,
-		borderRadius: 50,
-	},
+		borderRadius: 50
+	}
 });
 
 export default SignUpForm;
