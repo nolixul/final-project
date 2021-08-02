@@ -1,6 +1,6 @@
 import { Button, Input, Text } from "@ui-kitten/components";
 import { Avatar } from "react-native-elements";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { UserContext } from "../../context/User";
 import { View } from "react-native";
@@ -12,6 +12,19 @@ const VolProfile = () => {
 	const [newAvatarURL, setNewAvatarURL] = useState("");
 	const { User, setUser } = useContext(UserContext);
 
+	useEffect(() => {
+		setUser({
+			username: "testUsername",
+			firstName: "test",
+			lastName: "volunteer",
+			avatarURL: "https://image.flaticon.com/icons/png/512/194/194938.png"
+		});
+	}, []);
+
+	function fullName() {
+		return User.firstName + " " + User.lastName;
+	}
+
 	function handleUsername(text) {
 		setNewUsername(text);
 	}
@@ -20,13 +33,18 @@ const VolProfile = () => {
 		setNewAvatarURL(text);
 	}
 
+	// on pressing save changes, alter user data (patch request to backend) and set inputs to empty again
+
 	function handleSubmit() {
-		setUser((currUser) => ({
-			...currUser,
-			username: newUserName,
-			avatarURL: newAvatarURL
-		}));
+		setUser((currUser) => {
+			return { ...currUser, username: newUserName, avatarURL: newAvatarURL };
+		});
+		setNewUsername("");
+		setNewAvatarURL("");
 	}
+
+	// User details - avatar, input to change avatar, username, input to change username, name, email address
+	// change avatar url attribute to user.avatarURL when you get user
 
 	return (
 		<>
@@ -40,23 +58,29 @@ const VolProfile = () => {
 			/>
 			<Input
 				style={styles.input}
-				placeholder='Avatar URL'
+				placeholder='New avatar URL'
 				status='info'
+				value={newAvatarURL}
 				onChangeText={(text) => handleAvatar(text)}
 			></Input>
-			<View style={styles.nameContainer}>
-				<Text status='control'>{User.lastName}</Text>
-			</View>
+			<Input
+				style={styles.input}
+				placeholder='Change username'
+				status='info'
+				value={newUserName}
+				onChangeText={(text) => handleUsername(text)}
+			></Input>
 			<View style={styles.nameContainer}>
 				<Text status='control'>{User.username}</Text>
 			</View>
 
-			<Input
-				style={styles.input}
-				placeholder='Change your username'
-				status='info'
-				onChangeText={(text) => handleUsername(text)}
-			></Input>
+			<View style={styles.nameContainer}>
+				<Text status='control'>{fullName()}</Text>
+			</View>
+			<View style={styles.nameContainer}>
+				<Text status='control'>{User.email}</Text>
+			</View>
+
 			<Button style={styles.saveButton} onPress={handleSubmit}>
         Save Changes
 			</Button>
