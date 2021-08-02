@@ -11,6 +11,7 @@ import OrgMakeApplication from "../components/make_applications_components/OrgMa
 import SignUpForm from "../components/signup_components/SignUpForm";
 import OrganisationSUForm from "../components/signup_components/OrganisationSUForm";
 import VolunteerSUForm from "../components/signup_components/VolunteerSUForm";
+import Profile from "../components/profile_components/Profile";
 
 // Declaring stack navigation independently of app component
 
@@ -18,6 +19,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 export const LoginNavigator = () => (
 	<Navigator headerMode='none'>
+		<Screen name='Profile' component={Profile} />
 		<Screen name='Login' component={Login} />
 		<Screen name='Homepage' component={Homepage} />
 		<Screen name='VolHomepage' component={VolHomepage} />
