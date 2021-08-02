@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import { useState } from "react";
-import { UserContext } from "../context/User";
-import { StyleSheet, View } from "react-native";
+import React, { useContext } from 'react';
+import { useState } from 'react';
+import { UserContext } from '../context/User';
+import { StyleSheet, View } from 'react-native';
 import {
   Button,
   Divider,
   Layout,
   TopNavigation,
-  Input,
-} from "@ui-kitten/components";
-import { SafeAreaView } from "react-native-safe-area-context";
+  Input
+} from '@ui-kitten/components';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 // login page for volunteer/organisation - sign up pop up as well
 
@@ -17,8 +17,8 @@ const Login = React.memo(function Home({ navigation }) {
   // set login details in state, extract User and setUser from context
 
   const [login, setLogin] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: ''
   });
   const { User, setUser } = useContext(UserContext);
 
@@ -44,8 +44,8 @@ const Login = React.memo(function Home({ navigation }) {
     /* Retrieve user Profile */
     /* if user exists takes to the next page, 
     else, throw error empty input */
-    setUser({ username: "testUser", password: "testPassword" });
-    navigation.navigate("Homepage");
+    setUser({ username: 'testUser', password: 'testPassword' });
+    navigation.navigate('Homepage');
   };
 
   // email address and password inputs, login button and SignUp button
@@ -53,25 +53,25 @@ const Login = React.memo(function Home({ navigation }) {
   return (
     <>
       <SafeAreaView style={{ flex: 1 }}>
-        <TopNavigation title="MyApp" alignment="center" />
+        <TopNavigation title='MyApp' alignment='center' />
         <Divider />
         <Layout
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
           <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
           >
             <Input
-              placeholder="Enter your email address"
-              leftIcon={{ type: "font-awesome", name: "envelope" }}
+              placeholder='Enter your email address'
+              leftIcon={{ type: 'font-awesome', name: 'envelope' }}
               onChangeText={(e) => handleEmail(e)}
               value={login.email}
             />
 
             <Input
-              placeholder="Password"
+              placeholder='Password'
               secureTextEntry={true}
-              leftIcon={{ type: "font-awesome", name: "key" }}
+              leftIcon={{ type: 'font-awesome', name: 'key' }}
               onChangeText={(e) => handlePassword(e)}
               value={login.password}
             />
@@ -81,7 +81,7 @@ const Login = React.memo(function Home({ navigation }) {
             <Button
               style={styles.button}
               onPress={() => {
-                navigation.navigate("SignUpForm");
+                navigation.navigate('SignUpForm');
               }}
             >
               Sign Up
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
     width: 200,
     marginTop: 10,
     padding: 5,
-    borderRadius: 50,
-  },
+    borderRadius: 50
+  }
 });
 
 export default Login;
