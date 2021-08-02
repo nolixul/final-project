@@ -11,15 +11,14 @@ import {
 	Select,
 	SelectItem,
 	Input,
-	Button,
 } from "@ui-kitten/components";
-// import { DrawerNavigation } from "../../navigation/drawernavigation";
+import { DrawerNavigation } from "../../navigation/drawernavigation";
 import { StyleSheet } from "react-native";
 
 const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
 
-// Homepage
-const OrgHomepage = ({ navigation }) => {
+// Applications received
+const OrgApplication = ({ navigation }) => {
 	const navigateBack = () => {
 		navigation.goBack();
 	};
@@ -31,21 +30,24 @@ const OrgHomepage = ({ navigation }) => {
 	const data = ["Distance", "Date posted", "Date of event", "Categories"];
 	const displayValue = data[selectedIndex.row];
 	const [searchTerm, setSearchTerm] = React.useState("");
+	const [selectedOption, setSelectedOption] = React.useState(new IndexPath(0));
+	const statusData = ["Response required", "Accept", "Decline"];
+	const displayStatusValue = statusData[selectedOption.row];
 
 	return (
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
 				<TopNavigation
-					title="Organisation Homepage"
+					title="Organisation Opportunities"
 					alignment="center"
 					accessoryLeft={BackAction}
 				/>
 				<Divider />
-				{/* <Layout style={{ flex: 1 }}>
-          <DrawerNavigation />
-        </Layout> */}
+				<Layout style={{ flex: 1 }}>
+					<DrawerNavigation />
+				</Layout>
 
-				<Layout style={styles.container}>
+				<Layout style={(styles.container, { flex: 1 })}>
 					<Text>Sort results</Text>
 					<Select
 						value={displayValue}
@@ -63,12 +65,17 @@ const OrgHomepage = ({ navigation }) => {
 						value={searchTerm}
 						onChangeText={(nextValue) => setSearchTerm(nextValue)}
 					/>
-					<Button style={styles.button}>Post new opportunity</Button>
-				</Layout>
-				<Layout style={{ flex: 1 }}>
-					<Text>List of opportunities inc number of applications</Text>
-					<Button style={styles.button}>Withdraw opportunity</Button>
-					<Button style={styles.button}>Show volunteers</Button>
+
+					<Text>Applications received</Text>
+					<Select
+						value={displayStatusValue}
+						selectedOption={selectedOption}
+						onSelect={(index) => setSelectedOption(index)}
+					>
+						<SelectItem title="Response required" />
+						<SelectItem title="Accept" />
+						<SelectItem title="Decline" />
+					</Select>
 				</Layout>
 			</SafeAreaView>
 		</>
@@ -80,13 +87,6 @@ const styles = StyleSheet.create({
 		minHeight: 128,
 		justifyContent: "center",
 	},
-
-	button: {
-		width: 200,
-		marginTop: 10,
-		padding: 5,
-		borderRadius: 50,
-	},
 });
 
-export default OrgHomepage;
+export default OrgApplication;
