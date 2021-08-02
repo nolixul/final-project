@@ -17,17 +17,17 @@ import VolunteerSUForm from "../components/signup_components/VolunteerSUForm";
 const { Navigator, Screen } = createStackNavigator();
 
 export const LoginNavigator = () => (
-	<Navigator headerMode="none">
-		<Screen name="Login" component={Login} />
-		<Screen name="Homepage" component={Homepage} />
-		<Screen name="VolHomepage" component={VolHomepage} />
-		<Screen name="OrgHomepage" component={OrgHomepage} />
-		<Screen name="VolApplication" component={VolApplication} />
-		<Screen name="OrgApplication" component={OrgApplication} />
-		<Screen name="VolMakeApplication" component={VolMakeApplication} />
-		<Screen name="OrgMakeApplication" component={OrgMakeApplication} />
-		<Screen name="SignUpForm" component={SignUpForm} />
-		<Screen name="VolunteerSUForm" component={VolunteerSUForm} />
-		<Screen name="OrganisationSUForm" component={OrganisationSUForm} />
+	<Navigator headerMode='none'>
+		<Screen name='Login' component={Login} />
+		<Screen name='Homepage' component={Homepage} />
+		<Screen name='VolHomepage' component={VolHomepage} />
+		<Screen name='OrgHomepage' component={OrgHomepage} />
+		<Screen name='VolApplication' component={VolApplication} />
+		<Screen name='OrgApplication' component={OrgApplication} />
+		<Screen name='VolMakeApplication' component={VolMakeApplication} />
+		<Screen name='OrgMakeApplication' component={OrgMakeApplication} />
+		<Screen name='SignUpForm' component={SignUpForm} />
+		<Screen name='VolunteerSUForm' component={VolunteerSUForm} />
+		<Screen name='OrganisationSUForm' component={OrganisationSUForm} />
 	</Navigator>
 );

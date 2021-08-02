@@ -2,7 +2,10 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Divider, Layout } from "@ui-kitten/components";
 import CustomHeader from "../CustomHeader";
-import VolProfile from "./VolProfile";
+
+
+import OrgProfile from "./OrgProfile";
+
 
 // Profile page, rendering either the volunteer profile or the organisation profile, depending on who is logged in
 
@@ -17,7 +20,9 @@ const Profile = () => {
 				<Layout
 					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
 				>
-					<VolProfile />
+
+					<OrgProfile />
+
 				</Layout>
 
 				{/* if volunteer show volunteer profile, else show organisation profile */}
