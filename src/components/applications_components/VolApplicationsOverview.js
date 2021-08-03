@@ -7,9 +7,9 @@ import {
 	IndexPath,
 	Select,
 	SelectItem,
-	Input
+	Input,
 } from "@ui-kitten/components";
-import { DrawerNavigation } from "../../navigation/drawernavigation";
+
 import { StyleSheet } from "react-native";
 import CustomHeader from "../CustomHeader";
 
@@ -25,9 +25,6 @@ const VolApplication = () => {
 			<SafeAreaView style={{ flex: 1 }}>
 				<CustomHeader isSignUp={false} />
 				<Divider />
-				<Layout style={{ flex: 1 }}>
-					<DrawerNavigation />
-				</Layout>
 
 				<Layout style={(styles.container, { flex: 1 })}>
 					<Text>Sort results</Text>
@@ -36,23 +33,22 @@ const VolApplication = () => {
 						selectedIndex={selectedIndex}
 						onSelect={(index) => setSelectedIndex(index)}
 					>
-						<SelectItem title='Distance' />
-						<SelectItem title='Date posted' />
-						<SelectItem title='Date of event' />
-						<SelectItem title='Categories' />
+
+						<SelectItem title="Distance" />
+						<SelectItem title="Date posted" />
+						<SelectItem title="Date of event" />
+						<SelectItem title="Categories" />
 					</Select>
 					<Text>Search</Text>
 					<Input
-						placeholder='Search'
-
+						placeholder="Search"
 						value={searchTerm}
 						onChangeText={(nextValue) => setSearchTerm(nextValue)}
 					/>
 
 					<Text>Applications made</Text>
 					<Input
-
-						label='Status'
+						label="Status"
 						value={status}
 						onChangeText={(nextValue) => setStatus(nextValue)}
 					/>
@@ -64,9 +60,8 @@ const VolApplication = () => {
 
 const styles = StyleSheet.create({
 	container: {
-
-		minHeight: 128
-	}
+		minHeight: 128,
+	},
 });
 
 export default VolApplication;

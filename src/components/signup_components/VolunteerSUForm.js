@@ -6,12 +6,12 @@ import {
 	CheckBox,
 	Button,
 	Divider,
-	Layout
+	Layout,
 } from "@ui-kitten/components";
 import { View } from "react-native";
 import CustomHeader from "../CustomHeader";
 
-const VolunteerSUForm = React.memo(function VolunteerSUForm({ navigation }) {
+const VolunteerSUForm = React.memo(function VolunteerSUForm() {
 	const [checkedCS, setCheckedCS] = useState(false);
 	const [checkedMH, setCheckedMH] = useState(false);
 	const [checkedEN, setCheckedEN] = useState(false);
@@ -20,34 +20,34 @@ const VolunteerSUForm = React.memo(function VolunteerSUForm({ navigation }) {
 	return (
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
-				<CustomHeader isSignUp={true} navigation={navigation} />
+				<CustomHeader isSignUp={true} />
 				<Divider />
 				<Layout
 					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
 				>
 					<View style={{ flex: 1, justifyContent: "center" }}>
 						<Input
-							placeholder='First Name'
+							placeholder="First Name"
 							leftIcon={{ type: "font-awesome", name: "user" }}
 							/* onChangeText={(e) => handleEmail(e)} */
 							/* value={login.email} */
 						/>
 						<Input
-							placeholder='Surname'
+							placeholder="Surname"
 							leftIcon={{ type: "font-awesome", name: "envelope" }}
 							/*  onChangeText={(e) => handleEmail(e)} */
 							/* value={login.email} */
 						/>
 
 						<Input
-							placeholder='Email Address'
+							placeholder="Email Address"
 							leftIcon={{ type: "font-awesome", name: "envelope" }}
 							/*  onChangeText={(e) => handleEmail(e)} */
 							/* value={login.email} */
 						/>
 
 						<Input
-							placeholder='Password'
+							placeholder="Password
 							secureTextEntry={true}
 							leftIcon={{ type: "font-awesome", name: "key" }}
 							/* onChangeText={(e) => handlePassword(e)} */

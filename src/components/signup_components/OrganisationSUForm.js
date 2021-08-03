@@ -8,28 +8,28 @@ const OrganisationSUForm = () => {
 	return (
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
-				<CustomHeader isSignup={true} />
+				<CustomHeader isSignUp={true} />
 				<Divider />
 				<Layout
 					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
 				>
 					<View style={{ flex: 1, justifyContent: "center" }}>
 						<Input
-							placeholder='Organisation Name'
+							placeholder="Organisation Name"
 							leftIcon={{ type: "font-awesome", name: "user" }}
 							/* onChangeText={(e) => handleEmail(e)} */
 							/* value={login.email} */
 						/>
 
 						<Input
-							placeholder='Enter your email address'
+							placeholder="Enter your email address"
 							leftIcon={{ type: "font-awesome", name: "envelope" }}
 							/*  onChangeText={(e) => handleEmail(e)} */
 							/* value={login.email} */
 						/>
 
 						<Input
-							placeholder='Password'
+							placeholder="Password"
 							secureTextEntry={true}
 							leftIcon={{ type: "font-awesome", name: "key" }}
 							/* onChangeText={(e) => handlePassword(e)} */
