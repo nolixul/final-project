@@ -44,12 +44,14 @@ const VolApplication = () => {
 					<Text>Search</Text>
 					<Input
 						placeholder='Search'
+
 						value={searchTerm}
 						onChangeText={(nextValue) => setSearchTerm(nextValue)}
 					/>
 
 					<Text>Applications made</Text>
 					<Input
+
 						label='Status'
 						value={status}
 						onChangeText={(nextValue) => setStatus(nextValue)}
@@ -62,6 +64,7 @@ const VolApplication = () => {
 
 const styles = StyleSheet.create({
 	container: {
+
 		minHeight: 128
 	}
 });

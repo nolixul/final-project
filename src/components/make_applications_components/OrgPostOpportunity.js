@@ -7,6 +7,7 @@ import CustomHeader from "../CustomHeader";
 
 // Applications made
 const OrgMakeApplication = () => {
+
 	const [eventName, setEventName] = React.useState("");
 	const [location, setLocation] = React.useState("");
 	const [email, setEmail] = React.useState("");
@@ -20,7 +21,9 @@ const OrgMakeApplication = () => {
 	return (
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
+
 				<CustomHeader isSignUp={false} />
+
 				<Divider />
 				<Layout style={{ flex: 1 }}>
 					<DrawerNavigation />

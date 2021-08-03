@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import {
 	Divider,
 	Layout,
+
 	Text,
 	IndexPath,
 	Select,
@@ -15,6 +16,7 @@ import CustomHeader from "../CustomHeader";
 
 // Applications received
 const OrgApplication = () => {
+
 	const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
 	const data = ["Distance", "Date posted", "Date of event", "Categories"];
 	const displayValue = data[selectedIndex.row];
@@ -27,6 +29,8 @@ const OrgApplication = () => {
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
 				<CustomHeader isSignUp={false} />
+
+
 				<Divider />
 				<Layout style={{ flex: 1 }}>
 					<DrawerNavigation />
@@ -47,6 +51,7 @@ const OrgApplication = () => {
 					<Text>Search</Text>
 					<Input
 						placeholder='Search'
+
 						value={searchTerm}
 						onChangeText={(nextValue) => setSearchTerm(nextValue)}
 					/>
@@ -60,6 +65,7 @@ const OrgApplication = () => {
 						<SelectItem title='Response required' />
 						<SelectItem title='Accept' />
 						<SelectItem title='Decline' />
+
 					</Select>
 				</Layout>
 			</SafeAreaView>
@@ -72,6 +78,7 @@ const styles = StyleSheet.create({
 		minHeight: 128,
 		justifyContent: "center"
 	}
+
 });
 
 export default OrgApplication;
