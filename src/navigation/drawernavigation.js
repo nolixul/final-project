@@ -1,9 +1,17 @@
 import React from "react";
-import { Drawer, DrawerGroup, DrawerItem, Icon } from "@ui-kitten/components";
+import {
+	Drawer,
+	DrawerGroup,
+	DrawerItem,
+	Icon,
+	Layout,
+} from "@ui-kitten/components";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Homepage from "../components/homepage_components/Homepage";
 import VolApplication from "../components/applications_components/VolApplicationsOverview";
 import * as RootNavigation from "../RootNavigation";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Profile from "../components/profile_components/Profile";
 
 const drawer = createDrawerNavigator();
 
@@ -30,28 +38,44 @@ const DrawerContent = ({ isVolunteer }) => {
 	if (isVolunteer) {
 		return (
 			<Drawer>
-				<DrawerGroup
-					title="Opportunities"
-					accessoryLeft={OppsIcon}
-					// selectedIndex={selectedIndex}
-					// onSelect={(index) => setSelectedIndex(index)}
-					onPress={() => {
-						RootNavigation.navigate("Opportunities");
-					}}
-				>
-					<DrawerItem title="Community Support" accessoryLeft={CommunityIcon} />
-					<DrawerItem title="Mental Health" accessoryLeft={MentalHealthIcon} />
-					<DrawerItem title="Environment" accessoryLeft={EnvironmentIcon} />
-					<DrawerItem title="Animals" accessoryLeft={AnimalIcon} />
-				</DrawerGroup>
-				<DrawerItem
-					title="Applications"
-					accessoryLeft={ApplicationsIcon}
-					onPress={() => {
-						RootNavigation.navigate("Applications");
-					}}
-				/>
-				<DrawerItem title="Profile" accessoryLeft={ProfileIcon} />
+				<SafeAreaView>
+					<Layout style={{ flex: 1 }}>
+						<DrawerGroup
+							title="Opportunities"
+							accessoryLeft={OppsIcon}
+							// selectedIndex={selectedIndex}
+							// onSelect={(index) => setSelectedIndex(index)}
+							onPress={() => {
+								RootNavigation.navigate("Opportunities");
+							}}
+						>
+							<DrawerItem
+								title="Community Support"
+								accessoryLeft={CommunityIcon}
+							/>
+							<DrawerItem
+								title="Mental Health"
+								accessoryLeft={MentalHealthIcon}
+							/>
+							<DrawerItem title="Environment" accessoryLeft={EnvironmentIcon} />
+							<DrawerItem title="Animals" accessoryLeft={AnimalIcon} />
+						</DrawerGroup>
+						<DrawerItem
+							title="Applications"
+							accessoryLeft={ApplicationsIcon}
+							onPress={() => {
+								RootNavigation.navigate("Applications");
+							}}
+						/>
+						<DrawerItem
+							title="Profile"
+							accessoryLeft={ProfileIcon}
+							onPress={() => {
+								RootNavigation.navigate("Profile");
+							}}
+						/>
+					</Layout>
+				</SafeAreaView>
 			</Drawer>
 		);
 	} else {
@@ -60,8 +84,20 @@ const DrawerContent = ({ isVolunteer }) => {
 				selectedIndex={selectedIndex}
 				onSelect={(index) => setSelectedIndex(index)}
 			>
-				<DrawerItem title="Opportunities" accessoryLeft={OppsIcon} />
-				<DrawerItem title="Profile" accessoryLeft={ProfileIcon} />
+				<DrawerItem
+					title="Opportunities"
+					accessoryLeft={OppsIcon}
+					onPress={() => {
+						RootNavigation.navigate("Opportunities");
+					}}
+				/>
+				<DrawerItem
+					title="Profile"
+					accessoryLeft={ProfileIcon}
+					onPress={() => {
+						RootNavigation.navigate("Profile");
+					}}
+				/>
 			</Drawer>
 		);
 	}
@@ -74,6 +110,7 @@ const DrawerNavigator = () => (
 	>
 		<drawer.Screen name="Opportunities" component={Homepage} />
 		<drawer.Screen name="Applications" component={VolApplication} />
+		<drawer.Screen name="Profile" component={Profile} />
 	</drawer.Navigator>
 );
 

@@ -47,7 +47,7 @@ const VolunteerSUForm = React.memo(function VolunteerSUForm() {
 						/>
 
 						<Input
-							placeholder="Password
+							placeholder="Password"
 							secureTextEntry={true}
 							leftIcon={{ type: "font-awesome", name: "key" }}
 							/* onChangeText={(e) => handlePassword(e)} */
