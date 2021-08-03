@@ -2,30 +2,19 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
 	Divider,
-	Icon,
 	Layout,
-	TopNavigation,
-	TopNavigationAction,
 	Text,
 	IndexPath,
 	Select,
 	SelectItem,
-	Input,
+	Input
 } from "@ui-kitten/components";
 import { DrawerNavigation } from "../../navigation/drawernavigation";
 import { StyleSheet } from "react-native";
-
-const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
+import CustomHeader from "../CustomHeader";
 
 // Applications made
-const VolApplication = ({ navigation }) => {
-	const navigateBack = () => {
-		navigation.goBack();
-	};
-
-	const BackAction = () => (
-		<TopNavigationAction icon={BackIcon} onPress={navigateBack} />
-	);
+const VolApplication = () => {
 	const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
 	const data = ["Distance", "Date posted", "Date of event", "Categories"];
 	const displayValue = data[selectedIndex.row];
@@ -34,11 +23,7 @@ const VolApplication = ({ navigation }) => {
 	return (
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
-				<TopNavigation
-					title="Volunteer Applications"
-					alignment="center"
-					accessoryLeft={BackAction}
-				/>
+				<CustomHeader isSignUp={false} />
 				<Divider />
 				<Layout style={{ flex: 1 }}>
 					<DrawerNavigation />
@@ -51,21 +36,23 @@ const VolApplication = ({ navigation }) => {
 						selectedIndex={selectedIndex}
 						onSelect={(index) => setSelectedIndex(index)}
 					>
-						<SelectItem title="Distance" />
-						<SelectItem title="Date posted" />
-						<SelectItem title="Date of event" />
-						<SelectItem title="Categories" />
+						<SelectItem title='Distance' />
+						<SelectItem title='Date posted' />
+						<SelectItem title='Date of event' />
+						<SelectItem title='Categories' />
 					</Select>
 					<Text>Search</Text>
 					<Input
-						placeholder="Search"
+						placeholder='Search'
+
 						value={searchTerm}
 						onChangeText={(nextValue) => setSearchTerm(nextValue)}
 					/>
 
 					<Text>Applications made</Text>
 					<Input
-						label="Status"
+
+						label='Status'
 						value={status}
 						onChangeText={(nextValue) => setStatus(nextValue)}
 					/>
@@ -77,8 +64,9 @@ const VolApplication = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 	container: {
-		minHeight: 128,
-	},
+
+		minHeight: 128
+	}
 });
 
 export default VolApplication;

@@ -1,58 +1,35 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-	Input,
-	Button,
-	TopNavigation,
-	Divider,
-	Icon,
-	TopNavigationAction,
-	Layout,
-} from "@ui-kitten/components";
+import { Input, Layout, Divider, Button } from "@ui-kitten/components";
 import { View } from "react-native";
+import CustomHeader from "../CustomHeader";
 
-const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
-
-const OrganisationSUForm = React.memo(function OrganisationSUForm({
-	navigation,
-}) {
-	const navigateBack = () => {
-		navigation.goBack();
-	};
-
-	const BackAction = () => (
-		<TopNavigationAction icon={BackIcon} onPress={navigateBack} />
-	);
-
+const OrganisationSUForm = () => {
 	return (
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
-				<TopNavigation
-					title="MyApp"
-					alignment="center"
-					accessoryLeft={BackAction}
-				/>
+				<CustomHeader isSignup={true} />
 				<Divider />
 				<Layout
 					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
 				>
 					<View style={{ flex: 1, justifyContent: "center" }}>
 						<Input
-							placeholder="Organisation Name"
+							placeholder='Organisation Name'
 							leftIcon={{ type: "font-awesome", name: "user" }}
 							/* onChangeText={(e) => handleEmail(e)} */
 							/* value={login.email} */
 						/>
 
 						<Input
-							placeholder="Enter your email address"
+							placeholder='Enter your email address'
 							leftIcon={{ type: "font-awesome", name: "envelope" }}
 							/*  onChangeText={(e) => handleEmail(e)} */
 							/* value={login.email} */
 						/>
 
 						<Input
-							placeholder="Password"
+							placeholder='Password'
 							secureTextEntry={true}
 							leftIcon={{ type: "font-awesome", name: "key" }}
 							/* onChangeText={(e) => handlePassword(e)} */
@@ -69,6 +46,6 @@ const OrganisationSUForm = React.memo(function OrganisationSUForm({
 			</SafeAreaView>
 		</>
 	);
-});
+};
 
 export default OrganisationSUForm;

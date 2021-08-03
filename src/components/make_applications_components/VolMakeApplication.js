@@ -1,30 +1,12 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-	Divider,
-	Icon,
-	Layout,
-	TopNavigation,
-	TopNavigationAction,
-	Text,
-	Input,
-	Button,
-} from "@ui-kitten/components";
+import { Divider, Layout, Text, Input, Button } from "@ui-kitten/components";
 import { DrawerNavigation } from "../../navigation/drawernavigation";
 import { StyleSheet } from "react-native";
-
-const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
+import CustomHeader from "../CustomHeader";
 
 // Applications made
-const VolMakeApplication = ({ navigation }) => {
-	const navigateBack = () => {
-		navigation.goBack();
-	};
-
-	const BackAction = () => (
-		<TopNavigationAction icon={BackIcon} onPress={navigateBack} />
-	);
-
+const VolMakeApplication = () => {
 	const [firstName, setfirstName] = React.useState("");
 	const [surname, setSurname] = React.useState("");
 	const [email, setEmail] = React.useState("");
@@ -38,11 +20,7 @@ const VolMakeApplication = ({ navigation }) => {
 	return (
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
-				<TopNavigation
-					title="Volunteer Make Application"
-					alignment="center"
-					accessoryLeft={BackAction}
-				/>
+				<CustomHeader isSignUp={false} />
 				<Divider />
 				<Layout style={{ flex: 1 }}>
 					<DrawerNavigation />
@@ -51,32 +29,32 @@ const VolMakeApplication = ({ navigation }) => {
 				<Layout style={(styles.container, { flex: 1 })}>
 					<Text>Fill in application form</Text>
 					<Input
-						label="First Name"
-						placeholder=""
+						label='First Name'
+						placeholder=''
 						value={firstName}
 						onChangeText={(nextValue) => setfirstName(nextValue)}
 					/>
 					<Input
-						label="Surname"
-						placeholder=""
+						label='Surname'
+						placeholder=''
 						value={surname}
 						onChangeText={(nextValue) => setSurname(nextValue)}
 					/>
 					<Input
-						label="E-mail"
-						placeholder=""
+						label='E-mail'
+						placeholder=''
 						value={email}
 						onChangeText={(nextValue) => setEmail(nextValue)}
 					/>
 					<Input
-						label="Phone number"
-						placeholder=""
+						label='Phone number'
+						placeholder=''
 						value={phoneNumber}
 						onChangeText={(nextValue) => setPhoneNumber(nextValue)}
 					/>
 					<Input
-						label="Special requirements"
-						placeholder=""
+						label='Special requirements'
+						placeholder=''
 						value={requests}
 						onChangeText={(nextValue) => setRequests(nextValue)}
 					/>
@@ -92,14 +70,14 @@ const VolMakeApplication = ({ navigation }) => {
 const styles = StyleSheet.create({
 	container: {
 		minHeight: 128,
-		justifyContent: "center",
+		justifyContent: "center"
 	},
 	button: {
 		width: 200,
 		marginTop: 10,
 		padding: 5,
-		borderRadius: 50,
-	},
+		borderRadius: 50
+	}
 });
 
 export default VolMakeApplication;

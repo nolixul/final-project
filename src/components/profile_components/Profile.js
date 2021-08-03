@@ -15,7 +15,7 @@ const Profile = () => {
 	return (
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
-				<CustomHeader />
+				<CustomHeader isSignUp={false} />
 				<Divider />
 				<Layout
 					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
