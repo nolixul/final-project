@@ -1,9 +1,8 @@
 import { Button, Input, Text } from "@ui-kitten/components";
 import { Avatar } from "react-native-elements";
 import React, { useContext, useState } from "react";
-
-import { StyleSheet } from "react-native";
 import { UserContext } from "../../context/User";
+import { StyleSheet } from "react-native";
 import { View } from "react-native";
 
 // Volunteer profile screen. Rendered inside profile screen.
@@ -11,12 +10,11 @@ import { View } from "react-native";
 const VolProfile = () => {
 	const [newUserName, setNewUsername] = useState("");
 	const [newAvatarURL, setNewAvatarURL] = useState("");
-	const { User, setUser } = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
 
 	function fullName() {
-		return User.firstName + " " + User.lastName;
+		return user.firstName + " " + user.lastName;
 	}
-
 
 	function handleUsername(text) {
 		setNewUsername(text);
@@ -25,7 +23,6 @@ const VolProfile = () => {
 	function handleAvatar(text) {
 		setNewAvatarURL(text);
 	}
-
 
 	// on pressing save changes, alter user data (patch request to backend) and set inputs to empty again
 
@@ -39,7 +36,6 @@ const VolProfile = () => {
 
 	// User details - avatar, input to change avatar, username, input to change username, name, email address
 	// change avatar url attribute to user.avatarURL when you get user
-
 
 	return (
 		<>
@@ -66,16 +62,15 @@ const VolProfile = () => {
 				onChangeText={(text) => handleUsername(text)}
 			></Input>
 			<View style={styles.nameContainer}>
-				<Text status='control'>{User.username}</Text>
+				<Text status='control'>{user.username}</Text>
 			</View>
 
 			<View style={styles.nameContainer}>
 				<Text status='control'>{fullName()}</Text>
 			</View>
 			<View style={styles.nameContainer}>
-				<Text status='control'>{User.email}</Text>
+				<Text status='control'>{user.email}</Text>
 			</View>
-
 
 			<Button style={styles.saveButton} onPress={handleSubmit}>
         Save Changes

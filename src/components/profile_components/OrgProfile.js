@@ -1,6 +1,6 @@
 import { Button, Input, Text } from "@ui-kitten/components";
 import { Avatar } from "react-native-elements";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet } from "react-native";
 import { UserContext } from "../../context/User";
 import { View } from "react-native";
@@ -8,20 +8,7 @@ import { View } from "react-native";
 const OrgProfile = () => {
 	const [newOrgName, setNewOrgName] = useState("");
 	const [newAvatarURL, setNewAvatarURL] = useState("");
-	const { User, setUser } = useContext(UserContext);
-
-	useEffect(() => {
-		setUser({
-			OrgName: "testOrgName",
-			firstName: "test",
-			lastName: "volunteer",
-			avatarURL: "https://image.flaticon.com/icons/png/512/194/194938.png"
-		});
-	}, []);
-
-	function fullName() {
-		return User.firstName + " " + User.lastName;
-	}
+	const { user, setUser } = useContext(UserContext);
 
 	function handleOrgName(text) {
 		setNewOrgName(text);
@@ -69,14 +56,11 @@ const OrgProfile = () => {
 				onChangeText={(text) => handleOrgName(text)}
 			></Input>
 			<View style={styles.nameContainer}>
-				<Text status='control'>{User.OrgName}</Text>
+				<Text status='control'>{user.OrgName}</Text>
 			</View>
 
 			<View style={styles.nameContainer}>
-				<Text status='control'>{fullName()}</Text>
-			</View>
-			<View style={styles.nameContainer}>
-				<Text status='control'>{User.email}</Text>
+				<Text status='control'>{user.email}</Text>
 			</View>
 
 			<Button style={styles.saveButton} onPress={handleSubmit}>
