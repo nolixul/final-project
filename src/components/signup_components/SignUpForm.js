@@ -1,60 +1,49 @@
-import React, { useState } from "react";
-import { Input, Button, CheckBox } from "react-native-elements";
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Divider, Layout, Button } from "@ui-kitten/components";
+import { StyleSheet } from "react-native";
+import CustomHeader from "../CustomHeader";
 
-// Volunteer sign up form page
+// Sign up page
 
-const SignUpForm = () => {
-	const [checked, setChecked] = useState(false);
-
+const SignUpForm = ({ navigation }) => {
 	return (
 		<>
-			{/* CHOOSE AVATAR */}
-			{/* SET INTERESTS - checkboxes */}
-
-			<CheckBox
-				center
-				title="Community support"
-				checkedIcon="dot-circle-o"
-				uncheckedIcon="circle-o"
-				onPress={() => {
-					setChecked(!checked);
-				}}
-				checked={checked}
-			/>
-			<Input
-				placeholder="First Name"
-				leftIcon={{ type: "font-awesome", name: "user" }}
-				/* onChangeText={(e) => handleEmail(e)} */
-				/* value={login.email} */
-			/>
-			<Input
-				placeholder="Surname"
-				leftIcon={{ type: "font-awesome", name: "envelope" }}
-				/*  onChangeText={(e) => handleEmail(e)} */
-				/* value={login.email} */
-			/>
-
-			<Input
-				placeholder="Enter your email address"
-				leftIcon={{ type: "font-awesome", name: "envelope" }}
-				/*  onChangeText={(e) => handleEmail(e)} */
-				/* value={login.email} */
-			/>
-
-			<Input
-				placeholder="Password"
-				secureTextEntry={true}
-				leftIcon={{ type: "font-awesome", name: "key" }}
-				/* onChangeText={(e) => handlePassword(e)} */
-				/* value={login.password} */
-			/>
-			<Button
-				title="Sign Up"
-				backgroundColor="red"
-				/*   onPress={handleSubmit} */
-			></Button>
+			<SafeAreaView style={{ flex: 1 }}>
+				<CustomHeader isSignUp={true} navigation={navigation} />
+				<Divider />
+				<Layout
+					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+				>
+					<Button
+						style={styles.button}
+						onPress={() => {
+							navigation.navigate("VolunteerSUForm");
+						}}
+					>
+            Volunteer
+					</Button>
+					<Button
+						style={styles.button}
+						onPress={() => {
+							navigation.navigate("OrganisationSUForm");
+						}}
+					>
+            Organisation
+					</Button>
+				</Layout>
+			</SafeAreaView>
 		</>
 	);
 };
+
+const styles = StyleSheet.create({
+	button: {
+		width: 200,
+		marginTop: 10,
+		padding: 5,
+		borderRadius: 50
+	}
+});
 
 export default SignUpForm;

@@ -20,6 +20,7 @@ const CustomHeader = ({ isSignUp }) => {
 	const navigateMenu = () => {
 		RootNavigation.openDrawer();
 		//navigation.openDrawer();
+
 	};
 
 	const BackAction = () => (
@@ -33,6 +34,7 @@ const CustomHeader = ({ isSignUp }) => {
 	if (!isSignUp) {
 		return (
 			<TopNavigation
+
 				title="MyApp"
 				alignment="center"
 				accessoryLeft={MenuAction}

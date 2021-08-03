@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { UserContext } from "./src/context/User";
 import { NavigationContainer } from "@react-navigation/native";
 import { default as theme } from "./src/theme/custom-theme (4).json";
@@ -15,17 +14,20 @@ export default function App() {
 	// Can't pass props in between stack.screen tags, must declare screens in one self closing tag for react navigation to work. Use context.
 
 	// Declare navigation stacks elsewhere - see ui kitten for details. Get rid of auto header
+
 	React.useEffect(() => {
 		return () => {
 			isReadyRef.current = false;
 		};
 	}, []);
 
+
 	return (
 		<>
 			<IconRegistry icons={EvaIconsPack} />
 			<ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
 				<SafeAreaProvider>
+
 					<NavigationContainer
 						headerMode="none"
 						ref={navigationRef}
@@ -33,6 +35,7 @@ export default function App() {
 							isReadyRef.current = true;
 						}}
 					>
+
 						<UserContext.Provider value={{ User, setUser }}>
 							<LoginNavigator />
 						</UserContext.Provider>
