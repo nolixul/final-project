@@ -7,7 +7,7 @@ import {
 	SelectItem,
 	Input
 } from "@ui-kitten/components";
-import { DrawerNavigation } from "../../navigation/drawernavigation";
+
 import { StyleSheet } from "react-native";
 
 // Homepage
@@ -19,9 +19,7 @@ const VolHomepage = () => {
 
 	return (
 		<>
-			<Layout style={{ flex: 1 }}>
-				<DrawerNavigation />
-			</Layout>
+			<Layout style={{ flex: 1 }}></Layout>
 
 			<Layout style={(styles.container, { flex: 1 })}>
 				<Text>Sort results</Text>

@@ -1,5 +1,13 @@
 import React from "react";
 import { Drawer, DrawerGroup, DrawerItem, Icon } from "@ui-kitten/components";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import Homepage from "../components/homepage_components/Homepage";
+import VolApplication from "../components/applications_components/VolApplicationsOverview";
+
+const drawer = createDrawerNavigator();
+
+// Icons
+
 const OppsIcon = (props) => <Icon {...props} name='star-outline' />;
 const CommunityIcon = (props) => <Icon {...props} name='people-outline' />;
 const MentalHealthIcon = (props) => (
@@ -14,15 +22,18 @@ const ProfileIcon = (props) => <Icon {...props} name='settings-2-outline' />;
 
 // Drawer navigation for volunteer and organisation
 
-export const DrawerNavigation = ({ isVolunteer }) => {
+const DrawerContent = ({ isVolunteer }) => {
 	const [selectedIndex, setSelectedIndex] = React.useState(null);
+	isVolunteer = true;
 	if (isVolunteer) {
 		return (
-			<Drawer
-				selectedIndex={selectedIndex}
-				onSelect={(index) => setSelectedIndex(index)}
-			>
-				<DrawerGroup title='Opportunities' accessoryLeft={OppsIcon}>
+			<Drawer>
+				<DrawerGroup
+					title='Opportunities'
+					accessoryLeft={OppsIcon}
+					selectedIndex={selectedIndex}
+					onSelect={(index) => setSelectedIndex(index)}
+				>
 					<DrawerItem title='Community Support' accessoryLeft={CommunityIcon} />
 					<DrawerItem title='Mental Health' accessoryLeft={MentalHealthIcon} />
 					<DrawerItem title='Environment' accessoryLeft={EnvironmentIcon} />
@@ -44,3 +55,15 @@ export const DrawerNavigation = ({ isVolunteer }) => {
 		);
 	}
 };
+
+const DrawerNavigator = () => (
+	<drawer.Navigator
+		initialRouteName='Opportunities'
+		drawerContent={(props) => <DrawerContent {...props} />}
+	>
+		<drawer.Screen name='Opportunities' component={Homepage} />
+		<drawer.Screen name='Applications' component={VolApplication} />
+	</drawer.Navigator>
+);
+
+export default DrawerNavigator;

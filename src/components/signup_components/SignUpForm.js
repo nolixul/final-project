@@ -10,7 +10,7 @@ const SignUpForm = ({ navigation }) => {
 	return (
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
-				<CustomHeader isSignUp={true} />
+				<CustomHeader isSignUp={true} navigation={navigation} />
 				<Divider />
 				<Layout
 					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}

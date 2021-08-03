@@ -11,7 +11,7 @@ import {
 import { View } from "react-native";
 import CustomHeader from "../CustomHeader";
 
-const VolunteerSUForm = React.memo(function VolunteerSUForm() {
+const VolunteerSUForm = React.memo(function VolunteerSUForm({ navigation }) {
 	const [checkedCS, setCheckedCS] = useState(false);
 	const [checkedMH, setCheckedMH] = useState(false);
 	const [checkedEN, setCheckedEN] = useState(false);
@@ -20,7 +20,7 @@ const VolunteerSUForm = React.memo(function VolunteerSUForm() {
 	return (
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
-				<CustomHeader isSignUp={true} />
+				<CustomHeader isSignUp={true} navigation={navigation} />
 				<Divider />
 				<Layout
 					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
