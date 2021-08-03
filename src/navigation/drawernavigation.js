@@ -14,6 +14,7 @@ import * as RootNavigation from "../RootNavigation";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Profile from "../components/profile_components/Profile";
 import { IsVolunteerContext } from "../context/IsVolunteer";
+import { View } from "react-native";
 
 const drawer = createDrawerNavigator();
 
@@ -40,6 +41,7 @@ const DrawerContent = () => {
 		return (
 			<Drawer>
 				<SafeAreaView>
+					<View style={{ flexDirection: "row", height: 50 }}></View>
 					<Layout
 						style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
 					>

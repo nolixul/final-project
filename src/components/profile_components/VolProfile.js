@@ -13,7 +13,7 @@ const VolProfile = () => {
 	const { user, setUser } = useContext(UserContext);
 
 	function fullName() {
-		return user.firstName + " " + user.lastName;
+		return user.firstname + " " + user.lastname;
 	}
 
 	function handleUsername(text) {

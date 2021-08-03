@@ -9,13 +9,13 @@ import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { LoginNavigator } from "./src/navigation/stackNavRoutes";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { navigationRef, isReadyRef } from "./src/RootNavigation";
+import { OpportunitiesContext } from "./src/context/OpportunitiesContext";
 
 export default function App() {
 	const [user, setUser] = useState({});
 	const [isVolunteer, setIsVolunteer] = useState(true);
+	const [opportunities, setOpportunities] = useState([]);
 	// Can't pass props in between stack.screen tags, must declare screens in one self closing tag for react navigation to work. Use context.
-
-	// Declare navigation stacks elsewhere - see ui kitten for details. Get rid of auto header
 
 	React.useEffect(() => {
 		return () => {
@@ -35,13 +35,17 @@ export default function App() {
 							isReadyRef.current = true;
 						}}
 					>
-						<IsVolunteerContext.Provider
-							value={{ isVolunteer, setIsVolunteer }}
+						<OpportunitiesContext.Provider
+							value={{ opportunities, setOpportunities }}
 						>
-							<UserContext.Provider value={{ user, setUser }}>
-								<LoginNavigator />
-							</UserContext.Provider>
-						</IsVolunteerContext.Provider>
+							<IsVolunteerContext.Provider
+								value={{ isVolunteer, setIsVolunteer }}
+							>
+								<UserContext.Provider value={{ user, setUser }}>
+									<LoginNavigator />
+								</UserContext.Provider>
+							</IsVolunteerContext.Provider>
+						</OpportunitiesContext.Provider>
 					</NavigationContainer>
 				</SafeAreaProvider>
 			</ApplicationProvider>
