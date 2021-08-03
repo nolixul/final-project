@@ -75,6 +75,7 @@ const Login = React.memo(function Home({ navigation }) {
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
           >
             <Input
+              style={styles.input}
               placeholder='Username'
               leftIcon={{ type: 'font-awesome', name: 'envelope' }}
               onChangeText={(e) => handleUsername(e)}
@@ -82,6 +83,7 @@ const Login = React.memo(function Home({ navigation }) {
             />
 
             <Input
+              style={styles.input}
               placeholder='Password'
               secureTextEntry={true}
               leftIcon={{ type: 'font-awesome', name: 'key' }}
@@ -112,6 +114,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 5,
     borderRadius: 50
+  },
+  input: { width: 300, marginTop: 4, padding: 5, borderRadius: 50 },
+  container: {
+    minHeight: 128
   }
 });
 

@@ -1,4 +1,4 @@
-import { Button, Input, Text } from "@ui-kitten/components";
+import { Button, Input, Text, CheckBox } from "@ui-kitten/components";
 import { Avatar } from "react-native-elements";
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../context/User";
@@ -11,6 +11,8 @@ const VolProfile = () => {
 	const [newUserName, setNewUsername] = useState("");
 	const [newAvatarURL, setNewAvatarURL] = useState("");
 	const { user, setUser } = useContext(UserContext);
+	const [checkedDBS, setCheckedDBS] = useState(false);
+	const [checkedDrive, setCheckedDrive] = useState(false);
 
 	function fullName() {
 		return user.firstname + " " + user.lastname;
@@ -41,7 +43,7 @@ const VolProfile = () => {
 		<>
 			<Avatar
 				rounded
-				size={200}
+				size={150}
 				containerStyle={{ borderColor: "#5A8A97", borderStyle: "solid" }}
 				source={{
 					uri: "https://image.flaticon.com/icons/png/512/847/847969.png"
@@ -72,6 +74,20 @@ const VolProfile = () => {
 				<Text status='control'>{user.email}</Text>
 			</View>
 
+			<CheckBox
+				checked={checkedDBS}
+				onChange={(nextChecked) => setCheckedDBS(nextChecked)}
+				style={styles.checkBox}
+			>
+				{(evaProps) => <Text {...evaProps}>DBS Check</Text>}
+			</CheckBox>
+			<CheckBox
+				checked={checkedDrive}
+				onChange={(nextChecked) => setCheckedDrive(nextChecked)}
+				style={styles.checkBox}
+			>
+				{(evaProps) => <Text {...evaProps}>Driving license</Text>}
+			</CheckBox>
 			<Button style={styles.saveButton} onPress={handleSubmit}>
         Save Changes
 			</Button>
@@ -87,9 +103,16 @@ const styles = StyleSheet.create({
 	nameContainer: {
 		alignItems: "center",
 		width: 250,
-		padding: 5,
+		padding: 10,
 		borderRadius: 50,
 		backgroundColor: "#5A8A97",
+		marginTop: 10
+	},
+	checkBox: {
+		width: 250,
+		padding: 10,
+		borderRadius: 50,
+		backgroundColor: "#DBF5F6",
 		marginTop: 10
 	}
 });

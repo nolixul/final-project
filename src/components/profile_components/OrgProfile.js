@@ -35,7 +35,7 @@ const OrgProfile = () => {
 		<>
 			<Avatar
 				rounded
-				size={200}
+				size={150}
 				containerStyle={{ borderColor: "#5A8A97", borderStyle: "solid" }}
 				source={{
 					uri: "https://image.flaticon.com/icons/png/512/847/847969.png"
