@@ -15,7 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Profile from "../components/profile_components/Profile";
 import { IsVolunteerContext } from "../context/IsVolunteer";
 import { View } from "react-native";
-import useOpportunities from "../components/hooks/useOpportunities";
+import { CategoryContext } from "../context/CategoryContext";
 
 const drawer = createDrawerNavigator();
 
@@ -37,7 +37,7 @@ const ProfileIcon = (props) => <Icon {...props} name='settings-2-outline' />;
 
 const DrawerContent = () => {
 	const { isVolunteer } = useContext(IsVolunteerContext);
-	const { setCategory } = useOpportunities();
+	const { setCategory } = useContext(CategoryContext);
 
 	if (isVolunteer) {
 		return (
@@ -67,32 +67,32 @@ const DrawerContent = () => {
 								title='Community Support'
 								accessoryLeft={CommunityIcon}
 								onPress={() => {
-									setCategory("community support");
 									RootNavigation.navigate("Opportunities");
+									setCategory("community support");
 								}}
 							/>
 							<DrawerItem
 								title='Mental Health'
 								accessoryLeft={MentalHealthIcon}
 								onPress={() => {
-									setCategory("mental health");
 									RootNavigation.navigate("Opportunities");
+									setCategory("mental health");
 								}}
 							/>
 							<DrawerItem
 								title='Environment'
 								accessoryLeft={EnvironmentIcon}
 								onPress={() => {
-									setCategory("environment");
 									RootNavigation.navigate("Opportunities");
+									setCategory("environment");
 								}}
 							/>
 							<DrawerItem
 								title='Animals'
 								accessoryLeft={AnimalIcon}
 								onPress={() => {
-									setCategory("animals");
 									RootNavigation.navigate("Opportunities");
+									setCategory("animals");
 								}}
 							/>
 						</DrawerGroup>
