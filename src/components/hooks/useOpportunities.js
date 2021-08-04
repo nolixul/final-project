@@ -4,18 +4,17 @@ import { getOpportunities } from "../../utils/api";
 
 const useOpportunities = () => {
 	const [opportunities, setOpportunities] = useState([]);
-	console.log("in use opps");
+	const [category, setCategory] = useState("");
 
 	useEffect(() => {
-		console.log("in use effect");
-		getOpportunities()
+		console.log(category, "category in useEffect");
+		getOpportunities(category)
 			.then((opportunitiesfromAPI) => {
 				setOpportunities(opportunitiesfromAPI);
-				console.log(opportunities, "Opps");
 			})
 			.catch((err) => console.log(err, "ERROR"));
-	}, []);
-	return { opportunities, setOpportunities };
+	}, [category]);
+	return { opportunities, setOpportunities, category, setCategory };
 };
 
 export default useOpportunities;

@@ -4,11 +4,12 @@ import {
 	Select,
 	SelectItem,
 	Input,
-	Text,
+	Text
 } from "@ui-kitten/components";
 import { View } from "react-native";
 import { StyleSheet } from "react-native";
 import useOpportunities from "../hooks/useOpportunities";
+import { ScrollView } from "react-native-gesture-handler";
 
 // Homepage
 const VolHomepage = () => {
@@ -22,9 +23,19 @@ const VolHomepage = () => {
 	// Idea is - icon on left to represent category, title, org name, start date, dbs/drive icons as well.
 
 	function presentOpportunities(opportunities) {
+		function formattedDate(originalDate) {
+			const date = new Date(originalDate);
+			const month = date.getMonth();
+			const resultMonth = month < 10 ? "0" + month : month;
+			const day = date.getDate();
+			const resultDay = day < 10 ? "0" + day : day;
+			const year = date.getFullYear();
+			return `Starting ${resultDay}/${resultMonth}/${year}`;
+		}
+
 		return opportunities.map((opp) => {
 			return (
-				<View key={opp.name} style={styles.oppContainer}>
+				<View key={opp.opp_id} style={styles.oppContainer}>
 					<View style={styles.oppDetails}>
 						<Text>{opp.name}</Text>
 					</View>
@@ -32,7 +43,7 @@ const VolHomepage = () => {
 						<Text>{opp.opp_owner}</Text>
 					</View>
 					<View style={styles.oppDetails}>
-						<Text>{opp.opp_date}</Text>
+						<Text>{formattedDate(opp.opp_date)}</Text>
 					</View>
 				</View>
 			);
@@ -48,32 +59,34 @@ const VolHomepage = () => {
 						selectedIndex={selectedIndex}
 						onSelect={(index) => setSelectedIndex(index)}
 					>
-						<SelectItem title="Sort by" />
-						<SelectItem title="New" />
-						<SelectItem title="Date of event" />
+						<SelectItem title='Sort by' />
+						<SelectItem title='New' />
+						<SelectItem title='Date of event' />
 					</Select>
 				</View>
 				<View style={{ flex: 1 }}>
 					<Input
-						placeholder="Search"
+						placeholder='Search'
 						value={searchTerm}
 						onChangeText={(nextValue) => setSearchTerm(nextValue)}
 					/>
 				</View>
 			</View>
 			<View style={{ flexDirection: "row", height: 50 }}></View>
-			<View style={styles.view}>{presentOpportunities(opportunities)}</View>
+			<ScrollView>
+				<View style={styles.view}>{presentOpportunities(opportunities)}</View>
+			</ScrollView>
 		</>
 	);
 };
 
 const styles = StyleSheet.create({
 	container: {
-		minHeight: 128,
+		minHeight: 128
 	},
 	view: {
 		alignItems: "center",
-		justifyContent: "center",
+		justifyContent: "center"
 	},
 	oppContainer: {
 		alignItems: "center",
@@ -82,17 +95,16 @@ const styles = StyleSheet.create({
 		borderRadius: 25,
 		backgroundColor: "#5A8A97",
 		marginTop: 10,
-		height: 100,
+		height: 150
 	},
 	oppDetails: {
-		paddingLeft: 10,
-		paddingRight: 10,
 		marginTop: 5,
-		padding: 5,
+		marginBottom: 5,
+		padding: 7,
 		borderRadius: 25,
 		backgroundColor: "#BAE9ED",
-		flex: 1,
-	},
+		flex: 1
+	}
 });
 
 export default VolHomepage;

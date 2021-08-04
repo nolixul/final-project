@@ -15,6 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Profile from "../components/profile_components/Profile";
 import { IsVolunteerContext } from "../context/IsVolunteer";
 import { View } from "react-native";
+import useOpportunities from "../components/hooks/useOpportunities";
 
 const drawer = createDrawerNavigator();
 
@@ -36,6 +37,7 @@ const ProfileIcon = (props) => <Icon {...props} name='settings-2-outline' />;
 
 const DrawerContent = () => {
 	const { isVolunteer } = useContext(IsVolunteerContext);
+	const { setCategory } = useOpportunities();
 
 	if (isVolunteer) {
 		return (
@@ -57,8 +59,6 @@ const DrawerContent = () => {
 						<DrawerGroup
 							title='Opportunities'
 							accessoryLeft={OppsIcon}
-							// selectedIndex={selectedIndex}
-							// onSelect={(index) => setSelectedIndex(index)}
 							onPress={() => {
 								RootNavigation.navigate("Opportunities");
 							}}
@@ -66,13 +66,35 @@ const DrawerContent = () => {
 							<DrawerItem
 								title='Community Support'
 								accessoryLeft={CommunityIcon}
+								onPress={() => {
+									setCategory("community support");
+									RootNavigation.navigate("Opportunities");
+								}}
 							/>
 							<DrawerItem
 								title='Mental Health'
 								accessoryLeft={MentalHealthIcon}
+								onPress={() => {
+									setCategory("mental health");
+									RootNavigation.navigate("Opportunities");
+								}}
 							/>
-							<DrawerItem title='Environment' accessoryLeft={EnvironmentIcon} />
-							<DrawerItem title='Animals' accessoryLeft={AnimalIcon} />
+							<DrawerItem
+								title='Environment'
+								accessoryLeft={EnvironmentIcon}
+								onPress={() => {
+									setCategory("environment");
+									RootNavigation.navigate("Opportunities");
+								}}
+							/>
+							<DrawerItem
+								title='Animals'
+								accessoryLeft={AnimalIcon}
+								onPress={() => {
+									setCategory("animals");
+									RootNavigation.navigate("Opportunities");
+								}}
+							/>
 						</DrawerGroup>
 						<DrawerItem
 							title='Applications'
