@@ -6,6 +6,7 @@ import { StyleSheet } from "react-native";
 import { View } from "react-native";
 
 // Volunteer profile screen. Rendered inside profile screen.
+// MAKE SURE YOU DON'T SAVE AN EMPTY USERNAME
 
 const VolProfile = () => {
 	const [newUserName, setNewUsername] = useState("");

@@ -31,7 +31,7 @@ const CustomHeader = ({ isSignUp }) => {
 	if (!isSignUp) {
 		return (
 			<TopNavigation
-				title='MyApp'
+				title='ChariT'
 				alignment='center'
 				accessoryLeft={MenuAction}
 			/>
@@ -39,7 +39,7 @@ const CustomHeader = ({ isSignUp }) => {
 	} else {
 		return (
 			<TopNavigation
-				title='MyApp'
+				title='ChariT'
 				alignment='center'
 				accessoryLeft={BackAction}
 			/>
