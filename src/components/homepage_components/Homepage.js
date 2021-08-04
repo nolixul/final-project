@@ -8,8 +8,10 @@ import { IsVolunteerContext } from "../../context/IsVolunteer";
 import { View } from "react-native";
 
 // Homepage - displays listed opportunities - all opps for vol, opps posted by org for org
+
 const Homepage = ({ navigation }) => {
 	const { isVolunteer } = useContext(IsVolunteerContext);
+
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<CustomHeader isSignUp={false} navigation={navigation} />

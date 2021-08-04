@@ -10,6 +10,7 @@ import { View } from "react-native";
 import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { CategoryContext } from "../../context/CategoryContext";
+import { PageContext } from "../../context/PageContext";
 import { getOpportunities } from "../../utils/api";
 
 // Homepage
@@ -20,8 +21,19 @@ const VolHomepage = () => {
 	const displayValue = data[selectedIndex.row];
 	const [searchTerm, setSearchTerm] = React.useState("");
 	const { category } = useContext(CategoryContext);
+	const { setPage } = useContext(PageContext);
+
+	// Setting page context so drawernavigation knows which page is currently being used
+
+	if (category.length < 3) {
+		setPage("Opportunities");
+	} else {
+		setPage(category);
+	}
 
 	// Idea is - icon on left to represent category, title, org name, start date, dbs/drive icons as well.
+
+	// Fetch opportunities from API
 
 	useEffect(() => {
 		getOpportunities(category)
@@ -30,6 +42,8 @@ const VolHomepage = () => {
 			})
 			.catch((err) => console.log(err, "ERROR"));
 	}, [category]);
+
+	// Format date on opportunities
 
 	function formattedDate(originalDate) {
 		const date = new Date(originalDate);
@@ -40,6 +54,8 @@ const VolHomepage = () => {
 		const year = date.getFullYear();
 		return `Starting ${resultDay}/${resultMonth}/${year}`;
 	}
+
+	// Return a screen with a filter, search bar and all relevant opportunities on
 
 	return (
 		<>

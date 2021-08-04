@@ -16,10 +16,11 @@ import Profile from "../components/profile_components/Profile";
 import { IsVolunteerContext } from "../context/IsVolunteer";
 import { View } from "react-native";
 import { CategoryContext } from "../context/CategoryContext";
+import { PageContext } from "../context/PageContext";
 
 const drawer = createDrawerNavigator();
 
-// Icons
+// Icons for drawer items
 
 const OppsIcon = (props) => <Icon {...props} name='star-outline' />;
 const CommunityIcon = (props) => <Icon {...props} name='people-outline' />;
@@ -38,6 +39,17 @@ const ProfileIcon = (props) => <Icon {...props} name='settings-2-outline' />;
 const DrawerContent = () => {
 	const { isVolunteer } = useContext(IsVolunteerContext);
 	const { setCategory } = useContext(CategoryContext);
+	const { page } = useContext(PageContext);
+
+	// Navigate to page pressed on, set category state if it's a category page
+
+	{
+		() => {
+			if (page !== "") RootNavigation.navigate("");
+		};
+	}
+
+	// Return a different drawer contents based on if a volunteer or organisation is logged in
 
 	if (isVolunteer) {
 		return (
@@ -60,14 +72,16 @@ const DrawerContent = () => {
 							title='Opportunities'
 							accessoryLeft={OppsIcon}
 							onPress={() => {
-								RootNavigation.navigate("Opportunities");
+								if (page !== "Opportunities")
+									RootNavigation.navigate("Opportunities");
 							}}
 						>
 							<DrawerItem
 								title='Community Support'
 								accessoryLeft={CommunityIcon}
 								onPress={() => {
-									RootNavigation.navigate("Opportunities");
+									if (page !== "community support")
+										RootNavigation.navigate("Opportunities");
 									setCategory("community support");
 								}}
 							/>
@@ -75,7 +89,8 @@ const DrawerContent = () => {
 								title='Mental Health'
 								accessoryLeft={MentalHealthIcon}
 								onPress={() => {
-									RootNavigation.navigate("Opportunities");
+									if (page !== "mental health")
+										RootNavigation.navigate("Opportunities");
 									setCategory("mental health");
 								}}
 							/>
@@ -83,7 +98,8 @@ const DrawerContent = () => {
 								title='Environment'
 								accessoryLeft={EnvironmentIcon}
 								onPress={() => {
-									RootNavigation.navigate("Opportunities");
+									if (page !== "environment")
+										RootNavigation.navigate("Opportunities");
 									setCategory("environment");
 								}}
 							/>
@@ -91,7 +107,8 @@ const DrawerContent = () => {
 								title='Animals'
 								accessoryLeft={AnimalIcon}
 								onPress={() => {
-									RootNavigation.navigate("Opportunities");
+									if (page !== "animals")
+										RootNavigation.navigate("Opportunities");
 									setCategory("animals");
 								}}
 							/>
@@ -100,14 +117,15 @@ const DrawerContent = () => {
 							title='Applications'
 							accessoryLeft={ApplicationsIcon}
 							onPress={() => {
-								RootNavigation.navigate("Applications");
+								if (page !== "Applications")
+									RootNavigation.navigate("Applications");
 							}}
 						/>
 						<DrawerItem
 							title='Profile'
 							accessoryLeft={ProfileIcon}
 							onPress={() => {
-								RootNavigation.navigate("Profile");
+								if (page !== "Profile") RootNavigation.navigate("Profile");
 							}}
 						/>
 					</Layout>
@@ -151,6 +169,8 @@ const DrawerContent = () => {
 		);
 	}
 };
+
+// Drawer navigator component here, contains the different screens you can navigate to from the drawer
 
 const DrawerNavigator = () => (
 	<drawer.Navigator

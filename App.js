@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { UserContext } from "./src/context/User";
 import { IsVolunteerContext } from "./src/context/IsVolunteer";
 import { CategoryContext } from "./src/context/CategoryContext";
+import { PageContext } from "./src/context/PageContext";
 import { NavigationContainer } from "@react-navigation/native";
 import { default as theme } from "./src/theme/custom-theme (4).json";
 import * as eva from "@eva-design/eva";
@@ -15,6 +16,7 @@ export default function App() {
 	const [user, setUser] = useState({});
 	const [isVolunteer, setIsVolunteer] = useState(true);
 	const [category, setCategory] = useState("");
+	const [page, setPage] = useState("Opportunities");
 
 	// Can't pass props in between stack.screen tags, must declare screens in one self closing tag for react navigation to work. Use context.
 
@@ -36,15 +38,17 @@ export default function App() {
 							isReadyRef.current = true;
 						}}
 					>
-						<CategoryContext.Provider value={{ category, setCategory }}>
-							<IsVolunteerContext.Provider
-								value={{ isVolunteer, setIsVolunteer }}
-							>
-								<UserContext.Provider value={{ user, setUser }}>
-									<LoginNavigator />
-								</UserContext.Provider>
-							</IsVolunteerContext.Provider>
-						</CategoryContext.Provider>
+						<PageContext.Provider value={{ page, setPage }}>
+							<CategoryContext.Provider value={{ category, setCategory }}>
+								<IsVolunteerContext.Provider
+									value={{ isVolunteer, setIsVolunteer }}
+								>
+									<UserContext.Provider value={{ user, setUser }}>
+										<LoginNavigator />
+									</UserContext.Provider>
+								</IsVolunteerContext.Provider>
+							</CategoryContext.Provider>
+						</PageContext.Provider>
 					</NavigationContainer>
 				</SafeAreaProvider>
 			</ApplicationProvider>
