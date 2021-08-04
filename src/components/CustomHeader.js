@@ -2,25 +2,22 @@ import React from "react";
 import {
 	TopNavigation,
 	TopNavigationAction,
-	Icon,
+	Icon
 } from "@ui-kitten/components";
 import * as RootNavigation from "../RootNavigation";
 
-const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
-const MenuIcon = (props) => <Icon {...props} name="menu-outline" />;
+const BackIcon = (props) => <Icon {...props} name='arrow-back' />;
+const MenuIcon = (props) => <Icon {...props} name='menu-outline' />;
 
-// THIS IS WHERE THE ERROR IS DON'T FORGET IT, MENU ACTION JUST PUT A RETURN IN RANDOM PLACES
+// Custom header - renders a menu icon if !isSignUp, else renders a back icon in top left
 
 const CustomHeader = ({ isSignUp }) => {
 	const navigateBack = () => {
 		RootNavigation.goBack();
-		//navigation.goBack();
 	};
 
 	const navigateMenu = () => {
 		RootNavigation.openDrawer();
-		//navigation.openDrawer();
-
 	};
 
 	const BackAction = () => (
@@ -34,17 +31,16 @@ const CustomHeader = ({ isSignUp }) => {
 	if (!isSignUp) {
 		return (
 			<TopNavigation
-
-				title="MyApp"
-				alignment="center"
+				title='ChariT'
+				alignment='center'
 				accessoryLeft={MenuAction}
 			/>
 		);
 	} else {
 		return (
 			<TopNavigation
-				title="MyApp"
-				alignment="center"
+				title='ChariT'
+				alignment='center'
 				accessoryLeft={BackAction}
 			/>
 		);

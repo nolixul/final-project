@@ -7,16 +7,16 @@ import {
 	IndexPath,
 	Select,
 	SelectItem,
-	Input,
+	Input
 } from "@ui-kitten/components";
 
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import CustomHeader from "../CustomHeader";
 
 // Applications made
 const VolApplication = () => {
 	const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
-	const data = ["Distance", "Date posted", "Date of event", "Categories"];
+	const data = ["Sort by", "New", "Date of event"];
 	const displayValue = data[selectedIndex.row];
 	const [searchTerm, setSearchTerm] = React.useState("");
 	const [status, setStatus] = React.useState("Pending");
@@ -25,33 +25,40 @@ const VolApplication = () => {
 			<SafeAreaView style={{ flex: 1 }}>
 				<CustomHeader isSignUp={false} />
 				<Divider />
+				<Layout style={{ flex: 1 }}>
+					<View style={{ flexDirection: "row", height: 50 }}></View>
 
-				<Layout style={(styles.container, { flex: 1 })}>
-					<Text>Sort results</Text>
-					<Select
-						value={displayValue}
-						selectedIndex={selectedIndex}
-						onSelect={(index) => setSelectedIndex(index)}
-					>
+					<View style={styles.view}>
+						<View style={{ flex: 1 }}>
+							<Select
+								value={displayValue}
+								selectedIndex={selectedIndex}
+								onSelect={(index) => setSelectedIndex(index)}
+							>
+								<SelectItem title='Sort by' />
+								<SelectItem title='New' />
+								<SelectItem title='Date of event' />
+							</Select>
+							<View style={{ flex: 1 }}>
+								<Input
+									placeholder='Search'
+									value={searchTerm}
+									onChangeText={(nextValue) => setSearchTerm(nextValue)}
+								/>
+							</View>
+						</View>
+					</View>
 
-						<SelectItem title="Distance" />
-						<SelectItem title="Date posted" />
-						<SelectItem title="Date of event" />
-						<SelectItem title="Categories" />
-					</Select>
-					<Text>Search</Text>
-					<Input
-						placeholder="Search"
-						value={searchTerm}
-						onChangeText={(nextValue) => setSearchTerm(nextValue)}
-					/>
+					<View style={{ flexDirection: "row", height: 50 }}></View>
 
-					<Text>Applications made</Text>
-					<Input
-						label="Status"
-						value={status}
-						onChangeText={(nextValue) => setStatus(nextValue)}
-					/>
+					<View style={{ flex: 1 }}>
+						<Text>Applications made</Text>
+						<Input
+							label='Status'
+							value={status}
+							onChangeText={(nextValue) => setStatus(nextValue)}
+						/>
+					</View>
 				</Layout>
 			</SafeAreaView>
 		</>
@@ -60,8 +67,13 @@ const VolApplication = () => {
 
 const styles = StyleSheet.create({
 	container: {
-		minHeight: 128,
+		minHeight: 128
 	},
+	view: {
+		flexDirection: "row",
+		alignContent: "center",
+		justifyContent: "center"
+	}
 });
 
 export default VolApplication;
