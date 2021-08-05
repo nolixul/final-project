@@ -20,7 +20,9 @@ const VolProfile = () => {
 	}
 
 	function handleUsername(text) {
-		setNewUsername(text);
+		if (text.length > 2) {
+			setNewUsername(text);
+		}
 	}
 
 	function handleAvatar(text) {
@@ -47,7 +49,7 @@ const VolProfile = () => {
 				size={150}
 				containerStyle={{ borderColor: "#5A8A97", borderStyle: "solid" }}
 				source={{
-					uri: "https://image.flaticon.com/icons/png/512/847/847969.png"
+					uri: user.avatar_url
 				}}
 			/>
 			<Input
@@ -77,14 +79,18 @@ const VolProfile = () => {
 
 			<CheckBox
 				checked={checkedDBS}
-				onChange={(nextChecked) => setCheckedDBS(nextChecked)}
+				onChange={() => {
+					setCheckedDBS(!checkedDBS);
+				}}
 				style={styles.checkBox}
 			>
 				{(evaProps) => <Text {...evaProps}>DBS Check</Text>}
 			</CheckBox>
 			<CheckBox
 				checked={checkedDrive}
-				onChange={(nextChecked) => setCheckedDrive(nextChecked)}
+				onChange={() => {
+					setCheckedDrive(!checkedDrive);
+				}}
 				style={styles.checkBox}
 			>
 				{(evaProps) => <Text {...evaProps}>Driving license</Text>}

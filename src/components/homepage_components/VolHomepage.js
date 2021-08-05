@@ -9,30 +9,24 @@ import {
 import { View, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { CategoryContext } from "../../context/CategoryContext";
+
 import { OpportunityIDContext } from "../../context/OpportunityIDContext";
-import { PageContext } from "../../context/PageContext";
+
 import { getOpportunities } from "../../utils/api";
 import * as RootNavigation from "../../RootNavigation";
+import { CategoryContext } from "../../context/CategoryContext";
 
 // Homepage
 const VolHomepage = () => {
 	const [selectedIndex, setSelectedIndex] = React.useState(new IndexPath(0));
 	const [opportunities, setOpportunities] = useState([]);
-	const data = ["Sort by", "New", "Date of event"];
+	const data = ["Sort by", "Latest", "Date of event"];
 	const displayValue = data[selectedIndex.row];
 	const [searchTerm, setSearchTerm] = React.useState("");
 	const { category } = useContext(CategoryContext);
-	const { setPage } = useContext(PageContext);
 	const { setOppID } = useContext(OpportunityIDContext);
 
 	// Setting page context so drawernavigation knows which page is currently being used
-
-	if (category.length < 3) {
-		setPage("Opportunities");
-	} else {
-		setPage(category);
-	}
 
 	// Idea is - icon on left to represent category, title, org name, start date, dbs/drive icons as well.
 
@@ -60,7 +54,8 @@ const VolHomepage = () => {
 
 	// Navigate to single opp page
 
-	function handlePress() {
+	function handlePress(oppId) {
+		setOppID(oppId);
 		RootNavigation.navigate("Single_opp");
 	}
 
@@ -76,7 +71,7 @@ const VolHomepage = () => {
 						onSelect={(index) => setSelectedIndex(index)}
 					>
 						<SelectItem title='Sort by' />
-						<SelectItem title='New' />
+						<SelectItem title='Latest' />
 						<SelectItem title='Date of event' />
 					</Select>
 				</View>
@@ -92,10 +87,9 @@ const VolHomepage = () => {
 			<ScrollView>
 				<View style={styles.view}>
 					{opportunities.map((opp) => {
-						setOppID(opp.opp_id);
 						return (
 							<View key={opp.opp_id} style={styles.oppContainer}>
-								<TouchableOpacity onPress={handlePress}>
+								<TouchableOpacity onPress={() => handlePress(opp.opp_id)}>
 									<View style={styles.oppDetails}>
 										<Text>{opp.name}</Text>
 									</View>
