@@ -8,7 +8,7 @@ import { default as theme } from "./src/theme/custom-theme (4).json";
 import * as eva from "@eva-design/eva";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
-import { LoginNavigator } from "./src/navigation/stackNavRoutes";
+import { LoginNavigator } from "./src/navigation/LoginNavigator";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { navigationRef, isReadyRef } from "./src/RootNavigation";
 

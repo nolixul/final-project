@@ -27,3 +27,8 @@ export const getOpportunities = async (category) => {
 		return data.opportunities;
 	}
 };
+
+export const getApplications = async (username) => {
+	const { data } = await charitAPI.get(`/applications/${username}`);
+	return data.applications;
+};
