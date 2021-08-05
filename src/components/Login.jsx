@@ -11,20 +11,27 @@ import {
 } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useEffect } from 'react';
+import { getUser } from '../utils/api';
 
 // login page for volunteer/organisation - sign up pop up as well
 
 const Login = React.memo(function Home({ navigation }) {
   // set login details in state, extract User and setUser from context
   const { user, setUser } = useContext(UserContext);
+  const [submitPressed, setSubmitPressed] = useState(false);
 
+  // Hardcoding the user to be mercedes for demo purposes
   useEffect(() => {
     setUser({
-      username: 'testUser',
-      firstname: 'Iqpal',
-      lastname: 'Mannan',
-      email: 'dummyEmail',
-      password: 'testPassword'
+      username: 'Mercedes',
+      avatar_url:
+        'https://gravatar.com/avatar/bc6705809d3d8d7dadcd5fb859a853ce?s=400&d=robohash&r=x',
+      firstname: 'Mer',
+      lastname: 'Lau',
+      dbs: 0,
+      drive: 1,
+      email: 'mercedes@gmail.com',
+      password: 'password'
     });
   }, []);
 
@@ -49,17 +56,29 @@ const Login = React.memo(function Home({ navigation }) {
     setLogin(newLogin);
   };
 
-  // function to handle what happens then the login button is pressed
+  // function to handle what happens then the login button is pressed - not working, async setting user for some reason. Is only fetching from the users table in the database
 
-  const handleSubmit = () => {
-    /* Retrieve isVolunteer, setIsVolunteer, retrieve user Profile */
-    /* if user exists takes to the next page, 
-    else, throw error empty input */
+  // function handleSubmit() {
+  //   setSubmitPressed(true);
+  // }
 
-    if (user.hasOwnProperty('email')) {
-      navigation.navigate('Homepage');
-    }
-  };
+  // useEffect(() => {
+  //   getUser(login)
+  //     .then((userFromApi) => {
+  //       console.log(userFromApi, 'userFromApi');
+  //       setUser(userFromApi);
+  //       console.log(user, 'user after setuser');
+  //       if (user.hasOwnProperty('email')) {
+  //         navigation.navigate('Homepage');
+  //       }
+  //     })
+  //     .catch((err) => console.log(err, 'ERROR'));
+  // }, [submitPressed]);
+
+  // TEMPORARY HANDLE PRESSING LOGIN
+  function handlePress() {
+    navigation.navigate('Homepage');
+  }
 
   // username address and password inputs, login button and SignUp button
 
@@ -94,7 +113,7 @@ const Login = React.memo(function Home({ navigation }) {
               onChangeText={(e) => handlePassword(e)}
               value={login.password}
             />
-            <Button style={styles.button} onPress={handleSubmit}>
+            <Button style={styles.button} onPress={handlePress}>
               Login
             </Button>
             <Button

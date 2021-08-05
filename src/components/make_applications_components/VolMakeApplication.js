@@ -1,23 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-	Divider,
-	Layout,
-	Text,
-	Input,
-	Button,
-	CheckBox
-} from "@ui-kitten/components";
+import { Divider, Layout, Text, Input, CheckBox } from "@ui-kitten/components";
 import { StyleSheet, View } from "react-native";
 import CustomHeader from "../CustomHeader";
 import { UserContext } from "../../context/User";
+import { postApplication } from "../../utils/api";
+import { OpportunityIDContext } from "../../context/OpportunityIDContext";
+import SubmitApplicationPopover from "../SubmitApplicationPopover";
 
 // Applications made
 const VolMakeApplication = () => {
-	const handleSubmit = () => {
-		//  Submit application and it should show on volunteer's list and added to organisation list of volunteers for that opportunity
-	};
+	const [postApp, setPostApp] = useState({});
+	const { oppID } = useContext(OpportunityIDContext);
 	const { user } = useContext(UserContext);
+
+	useEffect(() => {
+		postApplication(postApp).catch((err) => {
+			console.log(err);
+		});
+	}, [postApp]);
+
+	const handleSubmit = () => {
+		//  Submit application and it should show on volunteer's list and added to organisation list of volunteers for that opportunity, add CONFIRMATION MESSAGE
+
+		setPostApp({ username: user.username, opp_id: oppID });
+	};
 
 	return (
 		<>
@@ -71,10 +78,7 @@ const VolMakeApplication = () => {
 						>
 							{(evaProps) => <Text {...evaProps}>Driving license</Text>}
 						</CheckBox>
-
-						<Button style={styles.button} onPress={handleSubmit}>
-              Submit application
-						</Button>
+						<SubmitApplicationPopover handleSubmit={handleSubmit} />
 					</View>
 				</Layout>
 			</SafeAreaView>
@@ -101,6 +105,12 @@ const styles = StyleSheet.create({
 		borderRadius: 50,
 		backgroundColor: "#DBF5F6",
 		marginTop: 10
+	},
+	content: {
+		flexDirection: "row",
+		alignItems: "center",
+		paddingHorizontal: 4,
+		paddingVertical: 8
 	}
 });
 

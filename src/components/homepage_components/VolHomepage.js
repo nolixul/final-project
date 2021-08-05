@@ -10,6 +10,7 @@ import { View, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { CategoryContext } from "../../context/CategoryContext";
+import { OpportunityIDContext } from "../../context/OpportunityIDContext";
 import { PageContext } from "../../context/PageContext";
 import { getOpportunities } from "../../utils/api";
 import * as RootNavigation from "../../RootNavigation";
@@ -23,6 +24,7 @@ const VolHomepage = () => {
 	const [searchTerm, setSearchTerm] = React.useState("");
 	const { category } = useContext(CategoryContext);
 	const { setPage } = useContext(PageContext);
+	const { setOppID } = useContext(OpportunityIDContext);
 
 	// Setting page context so drawernavigation knows which page is currently being used
 
@@ -58,7 +60,7 @@ const VolHomepage = () => {
 
 	// Navigate to single opp page
 
-	function navigateToSingleOpp() {
+	function handlePress() {
 		RootNavigation.navigate("Single_opp");
 	}
 
@@ -90,9 +92,10 @@ const VolHomepage = () => {
 			<ScrollView>
 				<View style={styles.view}>
 					{opportunities.map((opp) => {
+						setOppID(opp.opp_id);
 						return (
 							<View key={opp.opp_id} style={styles.oppContainer}>
-								<TouchableOpacity onPress={navigateToSingleOpp}>
+								<TouchableOpacity onPress={handlePress}>
 									<View style={styles.oppDetails}>
 										<Text>{opp.name}</Text>
 									</View>
