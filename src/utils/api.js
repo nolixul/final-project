@@ -27,3 +27,20 @@ export const getOpportunities = async (category) => {
 		return data.opportunities;
 	}
 };
+
+export const getApplications = async (username) => {
+	const { data } = await charitAPI.get(`/applications/${username}`);
+	return data.applications;
+};
+
+export const postApplication = async ({ username, opp_id }) => {
+	const { data } = await charitAPI.post("/application", {
+		params: { username, opp_id }
+	});
+	return data;
+};
+
+export const getUser = async ({ username }) => {
+	const { data } = await charitAPI.get(`/users/${username}`);
+	return data.users[0];
+};

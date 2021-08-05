@@ -1,21 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-	Input,
-	Text,
-	CheckBox,
-	Button,
-	Divider,
-	Layout,
-} from "@ui-kitten/components";
+import { Text, CheckBox, Button, Divider, Layout } from "@ui-kitten/components";
 import { View, StyleSheet } from "react-native";
 import CustomHeader from "../CustomHeader";
 import { ScrollView } from "react-native-gesture-handler";
+import * as RootNavigation from "../../RootNavigation";
 
-const SingleOpportunity = React.memo(function SingleOpportunity() {
-	const [checkedDBS, setCheckedDBS] = useState(false);
-	const [checkedDrive, setCheckedDrive] = useState(false);
-
+const SingleOpportunity = () => {
 	return (
 		<>
 			<SafeAreaView style={{ flex: 1 }}>
@@ -23,81 +14,51 @@ const SingleOpportunity = React.memo(function SingleOpportunity() {
 				<Divider />
 				<Layout style={styles.layout}>
 					<View style={styles.titleContainer}>
-						<Text status="control">Opportunity</Text>
+						<Text status='control'>Opportunity</Text>
 					</View>
 					<ScrollView>
 						<View style={styles.view}>
 							<View style={styles.interestsContainer}>
-								<Text status="control">Details</Text>
+								<Text status='control'>Details</Text>
 							</View>
-							<Input
-								style={styles.input}
-								placeholder="Name"
-								leftIcon={{ type: "font-awesome", name: "user" }}
-							/>
-							<Input
-								style={styles.input}
-								placeholder="Organisation"
-								leftIcon={{ type: "font-awesome", name: "user" }}
-								/* onChangeText={(e) => handleEmail(e)} */
-								/* value={login.email} */
-							/>
-							<Input
-								style={styles.input}
-								placeholder="Category"
-								leftIcon={{ type: "font-awesome", name: "user" }}
-								/* onChangeText={(e) => handleEmail(e)} */
-								/* value={login.email} */
-							/>
-							<Input
-								style={styles.input}
-								placeholder="Description"
-								leftIcon={{ type: "font-awesome", name: "envelope" }}
-								/*  onChangeText={(e) => handleEmail(e)} */
-								/* value={login.email} */
-							/>
 
-							<Input
-								style={styles.input}
-								placeholder="Date of event"
-								secureTextEntry={true}
-								leftIcon={{ type: "font-awesome", name: "key" }}
-								/* onChangeText={(e) => handlePassword(e)} */
-								/* value={login.password} */
-							/>
-							<Input
-								style={styles.input}
-								placeholder="Date posted"
-								leftIcon={{ type: "font-awesome", name: "envelope" }}
-								/*  onChangeText={(e) => handleEmail(e)} */
-								/* value={login.email} */
-							/>
+							<View style={styles.textContainer}>
+								<Text status='control'>TITLE</Text>
+							</View>
+							<View style={styles.textContainer}>
+								<Text status='control'>ORG NAME</Text>
+							</View>
+							<View style={styles.textContainer}>
+								<Text status='control'>CATEGORY</Text>
+							</View>
+							<View style={styles.textContainer}>
+								<Text status='control'>DESCRIPTION</Text>
+							</View>
+							<View style={styles.textContainer}>
+								<Text status='control'>START DATE</Text>
+							</View>
+							<View style={styles.textContainer}>
+								<Text status='control'>DATE POSTED</Text>
+							</View>
 
 							<View style={styles.view}>
 								<View style={styles.interestsContainer}>
-									<Text status="control">Requirements</Text>
+									<Text status='control'>Requirements</Text>
 								</View>
 
-								<CheckBox
-									checked={checkedDBS}
-									onChange={(nextChecked) => setCheckedDBS(nextChecked)}
-									style={styles.checkBox}
-								>
+								<CheckBox checked={true} style={styles.checkBox}>
 									{(evaProps) => <Text {...evaProps}>DBS Check</Text>}
 								</CheckBox>
-								<CheckBox
-									checked={checkedDrive}
-									onChange={(nextChecked) => setCheckedDrive(nextChecked)}
-									style={styles.checkBox}
-								>
+								<CheckBox checked={true} style={styles.checkBox}>
 									{(evaProps) => <Text {...evaProps}>Driving license</Text>}
 								</CheckBox>
 							</View>
 
 							<Button
 								style={styles.button}
-
-								/*   onPress={handleSubmit} */
+								onPress={() => {
+									RootNavigation.navigate("Apply");
+								}}
 							>
                 Apply
 							</Button>
@@ -107,12 +68,12 @@ const SingleOpportunity = React.memo(function SingleOpportunity() {
 			</SafeAreaView>
 		</>
 	);
-});
+};
 
 const styles = StyleSheet.create({
 	input: { width: 300, marginTop: 4, padding: 5, borderRadius: 50 },
 	container: {
-		minHeight: 128,
+		minHeight: 128
 	},
 	view: { justifyContent: "center", alignItems: "center" },
 	layout: { flex: 1, justifyContent: "center", alignItems: "center" },
@@ -120,14 +81,14 @@ const styles = StyleSheet.create({
 		width: 200,
 		marginTop: 15,
 		padding: 5,
-		borderRadius: 50,
+		borderRadius: 50
 	},
 	checkBox: {
 		width: 300,
 		padding: 10,
 		borderRadius: 50,
 		backgroundColor: "#BAE9ED",
-		marginTop: 10,
+		marginTop: 10
 	},
 	interestsContainer: {
 		alignItems: "center",
@@ -135,7 +96,7 @@ const styles = StyleSheet.create({
 		padding: 5,
 		borderRadius: 50,
 		backgroundColor: "#5A8A97",
-		marginTop: 10,
+		marginTop: 10
 	},
 	titleContainer: {
 		alignItems: "center",
@@ -143,8 +104,16 @@ const styles = StyleSheet.create({
 		padding: 15,
 		borderRadius: 50,
 		backgroundColor: "#264653",
-		marginTop: 10,
+		marginTop: 10
 	},
+	textContainer: {
+		alignItems: "center",
+		width: 250,
+		padding: 10,
+		borderRadius: 50,
+		backgroundColor: "#5A8A97",
+		marginTop: 10
+	}
 });
 
 export default SingleOpportunity;

@@ -11,11 +11,11 @@ import DrawerNavigator from "./drawernavigation";
 const { Navigator, Screen } = createStackNavigator();
 
 export const LoginNavigator = () => (
-	<Navigator headerMode="none">
-		<Screen name="Login" component={Login} />
-		<Screen name="Homepage" component={DrawerNavigator} />
-		<Screen name="SignUpForm" component={SignUpForm} />
-		<Screen name="VolunteerSUForm" component={VolunteerSUForm} />
-		<Screen name="OrganisationSUForm" component={OrganisationSUForm} />
+	<Navigator headerMode='none' initialRouteName='Login'>
+		<Screen name='Login' component={Login} />
+		<Screen name='Homepage' component={DrawerNavigator} />
+		<Screen name='SignUpForm' component={SignUpForm} />
+		<Screen name='VolunteerSUForm' component={VolunteerSUForm} />
+		<Screen name='OrganisationSUForm' component={OrganisationSUForm} />
 	</Navigator>
 );

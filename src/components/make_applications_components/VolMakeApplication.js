@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Divider, Layout, Text, Input, Button } from "@ui-kitten/components";
-import { DrawerNavigation } from "../../navigation/drawernavigation";
-import { StyleSheet } from "react-native";
+import { Divider, Layout, Text, Input, CheckBox } from "@ui-kitten/components";
+import { StyleSheet, View } from "react-native";
 import CustomHeader from "../CustomHeader";
+import { UserContext } from "../../context/User";
+import { postApplication } from "../../utils/api";
+import { OpportunityIDContext } from "../../context/OpportunityIDContext";
+import SubmitApplicationPopover from "../SubmitApplicationPopover";
 
 // Applications made
 const VolMakeApplication = () => {
-	const [firstName, setfirstName] = React.useState("");
-	const [surname, setSurname] = React.useState("");
-	const [email, setEmail] = React.useState("");
-	const [phoneNumber, setPhoneNumber] = React.useState("");
-	const [requests, setRequests] = React.useState("");
+	const [postApp, setPostApp] = useState({});
+	const { oppID } = useContext(OpportunityIDContext);
+	const { user } = useContext(UserContext);
+
+	useEffect(() => {
+		postApplication(postApp).catch((err) => {
+			console.log(err);
+		});
+	}, [postApp]);
 
 	const handleSubmit = () => {
-		//  Submit application and it should show on volunteer's list and added to organisation list of volunteers for that opportunity
+		//  Submit application and it should show on volunteer's list and added to organisation list of volunteers for that opportunity, add CONFIRMATION MESSAGE
+
+		setPostApp({ username: user.username, opp_id: oppID });
 	};
 
 	return (
@@ -22,45 +31,55 @@ const VolMakeApplication = () => {
 			<SafeAreaView style={{ flex: 1 }}>
 				<CustomHeader isSignUp={false} />
 				<Divider />
-				<Layout style={{ flex: 1 }}>
-					<DrawerNavigation />
-				</Layout>
-
-				<Layout style={(styles.container, { flex: 1 })}>
-					<Text>Fill in application form</Text>
-					<Input
-						label='First Name'
-						placeholder=''
-						value={firstName}
-						onChangeText={(nextValue) => setfirstName(nextValue)}
-					/>
-					<Input
-						label='Surname'
-						placeholder=''
-						value={surname}
-						onChangeText={(nextValue) => setSurname(nextValue)}
-					/>
-					<Input
-						label='E-mail'
-						placeholder=''
-						value={email}
-						onChangeText={(nextValue) => setEmail(nextValue)}
-					/>
-					<Input
-						label='Phone number'
-						placeholder=''
-						value={phoneNumber}
-						onChangeText={(nextValue) => setPhoneNumber(nextValue)}
-					/>
-					<Input
-						label='Special requirements'
-						placeholder=''
-						value={requests}
-						onChangeText={(nextValue) => setRequests(nextValue)}
-					/>
-					<Button style={styles.button} onPress={handleSubmit}>
-            Submit application
-					</Button>
+				<Layout style={{ justifyContent: "center", flex: 1 }}>
+					<View style={{ alignItems: "center" }}>
+						<View style={styles.nameContainer}>
+							<Text status='control'>Your details</Text>
+						</View>
+						<Input
+							style={styles.input}
+							label='First Name'
+							value={user.firstname}
+							disabled={true}
+						/>
+						<Input
+							style={styles.input}
+							label='Surname'
+							value={user.lastname}
+							disabled={true}
+						/>
+						<Input
+							style={styles.input}
+							label='Email'
+							value={user.email}
+							disabled={true}
+						/>
+						<CheckBox
+							checked={() => {
+								if (user.dbs === 0) {
+									return false;
+								} else if (user.dbs === 1) {
+									return true;
+								}
+							}}
+							style={styles.checkBox}
+						>
+							{(evaProps) => <Text {...evaProps}>DBS Check</Text>}
+						</CheckBox>
+						<CheckBox
+							checked={() => {
+								if (user.drive === 0) {
+									return false;
+								} else if (user.drive === 1) {
+									return true;
+								}
+							}}
+							style={styles.checkBox}
+						>
+							{(evaProps) => <Text {...evaProps}>Driving license</Text>}
+						</CheckBox>
+						<SubmitApplicationPopover handleSubmit={handleSubmit} />
+					</View>
 				</Layout>
 			</SafeAreaView>
 		</>
@@ -68,15 +87,30 @@ const VolMakeApplication = () => {
 };
 
 const styles = StyleSheet.create({
-	container: {
-		minHeight: 128,
-		justifyContent: "center"
+	text: { marginTop: 10, padding: 5, borderRadius: 50 },
+	button: { width: 250, marginTop: 10, padding: 5, borderRadius: 50 },
+	saveButton: { marginTop: 10, padding: 5, borderRadius: 50 },
+	input: { width: 250, marginTop: 10, padding: 5, borderRadius: 50 },
+	nameContainer: {
+		alignItems: "center",
+		width: 250,
+		padding: 10,
+		borderRadius: 50,
+		backgroundColor: "#5A8A97",
+		marginTop: 10
 	},
-	button: {
-		width: 200,
-		marginTop: 10,
-		padding: 5,
-		borderRadius: 50
+	checkBox: {
+		width: 250,
+		padding: 10,
+		borderRadius: 50,
+		backgroundColor: "#DBF5F6",
+		marginTop: 10
+	},
+	content: {
+		flexDirection: "row",
+		alignItems: "center",
+		paddingHorizontal: 4,
+		paddingVertical: 8
 	}
 });
 

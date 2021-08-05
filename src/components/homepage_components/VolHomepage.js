@@ -6,12 +6,14 @@ import {
 	Input,
 	Text
 } from "@ui-kitten/components";
-import { View } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { CategoryContext } from "../../context/CategoryContext";
+import { OpportunityIDContext } from "../../context/OpportunityIDContext";
 import { PageContext } from "../../context/PageContext";
 import { getOpportunities } from "../../utils/api";
+import * as RootNavigation from "../../RootNavigation";
 
 // Homepage
 const VolHomepage = () => {
@@ -22,6 +24,7 @@ const VolHomepage = () => {
 	const [searchTerm, setSearchTerm] = React.useState("");
 	const { category } = useContext(CategoryContext);
 	const { setPage } = useContext(PageContext);
+	const { setOppID } = useContext(OpportunityIDContext);
 
 	// Setting page context so drawernavigation knows which page is currently being used
 
@@ -55,6 +58,12 @@ const VolHomepage = () => {
 		return `Starting ${resultDay}/${resultMonth}/${year}`;
 	}
 
+	// Navigate to single opp page
+
+	function handlePress() {
+		RootNavigation.navigate("Single_opp");
+	}
+
 	// Return a screen with a filter, search bar and all relevant opportunities on
 
 	return (
@@ -83,17 +92,20 @@ const VolHomepage = () => {
 			<ScrollView>
 				<View style={styles.view}>
 					{opportunities.map((opp) => {
+						setOppID(opp.opp_id);
 						return (
 							<View key={opp.opp_id} style={styles.oppContainer}>
-								<View style={styles.oppDetails}>
-									<Text>{opp.name}</Text>
-								</View>
-								<View style={styles.oppDetails}>
-									<Text>{opp.opp_owner}</Text>
-								</View>
-								<View style={styles.oppDetails}>
-									<Text>{formattedDate(opp.opp_date)}</Text>
-								</View>
+								<TouchableOpacity onPress={handlePress}>
+									<View style={styles.oppDetails}>
+										<Text>{opp.name}</Text>
+									</View>
+									<View style={styles.oppDetails}>
+										<Text>{opp.opp_owner}</Text>
+									</View>
+									<View style={styles.oppDetails}>
+										<Text>{formattedDate(opp.opp_date)}</Text>
+									</View>
+								</TouchableOpacity>
 							</View>
 						);
 					})}
@@ -127,7 +139,8 @@ const styles = StyleSheet.create({
 		padding: 7,
 		borderRadius: 25,
 		backgroundColor: "#BAE9ED",
-		flex: 1
+		width: 300,
+		alignItems: "center"
 	}
 });
 

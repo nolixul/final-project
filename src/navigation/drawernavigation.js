@@ -8,7 +8,6 @@ import {
 	Layout
 } from "@ui-kitten/components";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import Homepage from "../components/homepage_components/Homepage";
 import VolApplication from "../components/applications_components/VolApplicationsOverview";
 import * as RootNavigation from "../RootNavigation";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,6 +16,7 @@ import { IsVolunteerContext } from "../context/IsVolunteer";
 import { View } from "react-native";
 import { CategoryContext } from "../context/CategoryContext";
 import { PageContext } from "../context/PageContext";
+import { VolApplyNavigator } from "./VolApplyNavigator";
 
 const drawer = createDrawerNavigator();
 
@@ -42,12 +42,6 @@ const DrawerContent = () => {
 	const { page } = useContext(PageContext);
 
 	// Navigate to page pressed on, set category state if it's a category page
-
-	{
-		() => {
-			if (page !== "") RootNavigation.navigate("");
-		};
-	}
 
 	// Return a different drawer contents based on if a volunteer or organisation is logged in
 
@@ -177,7 +171,7 @@ const DrawerNavigator = () => (
 		initialRouteName='Opportunities'
 		drawerContent={(props) => <DrawerContent {...props} />}
 	>
-		<drawer.Screen name='Opportunities' component={Homepage} />
+		<drawer.Screen name='Opportunities' component={VolApplyNavigator} />
 		<drawer.Screen name='Applications' component={VolApplication} />
 		<drawer.Screen name='Profile' component={Profile} />
 	</drawer.Navigator>
