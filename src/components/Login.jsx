@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { UserContext } from "../context/User";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import {
   Button,
   Divider,
@@ -71,6 +71,10 @@ const Login = React.memo(function Home({ navigation }) {
         <Layout
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
+          <Image
+            source={require("../images/chariT-logos.jpeg")}
+            style={{ width: 400, height: 400 }}
+          />
           <View
             style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
           >
