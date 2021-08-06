@@ -4,7 +4,7 @@ import {
 	Select,
 	SelectItem,
 	Input,
-	Text
+	Text,
 } from "@ui-kitten/components";
 import { View, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
@@ -35,7 +35,9 @@ const VolHomepage = () => {
 	useEffect(() => {
 		getOpportunities(category)
 			.then((opportunitiesfromAPI) => {
+				// console.log(opportunitiesfromAPI, "<<<<<in VolHomepage");
 				setOpportunities([...opportunitiesfromAPI]);
+				console.log(opportunities, "<<<< after setOpportunities");
 			})
 			.catch((err) => console.log(err, "ERROR"));
 	}, [category]);
@@ -43,12 +45,14 @@ const VolHomepage = () => {
 	// Format date on opportunities
 
 	function formattedDate(originalDate) {
+		console.log(originalDate);
 		const date = new Date(originalDate);
-		const month = date.getMonth();
+		const month = date.getMonth() + 1;
 		const resultMonth = month < 10 ? "0" + month : month;
 		const day = date.getDate();
 		const resultDay = day < 10 ? "0" + day : day;
 		const year = date.getFullYear();
+		console.log(`${resultDay}/${resultMonth}/${year}`);
 		return `Starting ${resultDay}/${resultMonth}/${year}`;
 	}
 
@@ -70,14 +74,14 @@ const VolHomepage = () => {
 						selectedIndex={selectedIndex}
 						onSelect={(index) => setSelectedIndex(index)}
 					>
-						<SelectItem title='Sort by' />
-						<SelectItem title='Latest' />
-						<SelectItem title='Date of event' />
+						<SelectItem title="Sort by" />
+						<SelectItem title="Latest" />
+						<SelectItem title="Date of event" />
 					</Select>
 				</View>
 				<View style={{ flex: 1 }}>
 					<Input
-						placeholder='Search'
+						placeholder="Search"
 						value={searchTerm}
 						onChangeText={(nextValue) => setSearchTerm(nextValue)}
 					/>
@@ -111,11 +115,11 @@ const VolHomepage = () => {
 
 const styles = StyleSheet.create({
 	container: {
-		minHeight: 128
+		minHeight: 128,
 	},
 	view: {
 		alignItems: "center",
-		justifyContent: "center"
+		justifyContent: "center",
 	},
 	oppContainer: {
 		alignItems: "center",
@@ -125,7 +129,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "#5A8A97",
 		marginTop: 10,
 		marginBottom: 10,
-		height: 150
+		height: 150,
 	},
 	oppDetails: {
 		marginTop: 5,
@@ -134,8 +138,8 @@ const styles = StyleSheet.create({
 		borderRadius: 25,
 		backgroundColor: "#BAE9ED",
 		width: 300,
-		alignItems: "center"
-	}
+		alignItems: "center",
+	},
 });
 
 export default VolHomepage;

@@ -34,48 +34,30 @@ const VolMakeApplication = () => {
 				<Layout style={{ justifyContent: "center", flex: 1 }}>
 					<View style={{ alignItems: "center" }}>
 						<View style={styles.nameContainer}>
-							<Text status='control'>Your details</Text>
+							<Text status="control">Your details</Text>
 						</View>
 						<Input
 							style={styles.input}
-							label='First Name'
+							label="First Name"
 							value={user.firstname}
 							disabled={true}
 						/>
 						<Input
 							style={styles.input}
-							label='Surname'
+							label="Surname"
 							value={user.lastname}
 							disabled={true}
 						/>
 						<Input
 							style={styles.input}
-							label='Email'
+							label="Email"
 							value={user.email}
 							disabled={true}
 						/>
-						<CheckBox
-							checked={() => {
-								if (user.dbs === 0) {
-									return false;
-								} else if (user.dbs === 1) {
-									return true;
-								}
-							}}
-							style={styles.checkBox}
-						>
+						<CheckBox checked={true} style={styles.checkBox}>
 							{(evaProps) => <Text {...evaProps}>DBS Check</Text>}
 						</CheckBox>
-						<CheckBox
-							checked={() => {
-								if (user.drive === 0) {
-									return false;
-								} else if (user.drive === 1) {
-									return true;
-								}
-							}}
-							style={styles.checkBox}
-						>
+						<CheckBox checked={true} style={styles.checkBox}>
 							{(evaProps) => <Text {...evaProps}>Driving license</Text>}
 						</CheckBox>
 						<SubmitApplicationPopover handleSubmit={handleSubmit} />
@@ -97,21 +79,21 @@ const styles = StyleSheet.create({
 		padding: 10,
 		borderRadius: 50,
 		backgroundColor: "#5A8A97",
-		marginTop: 10
+		marginTop: 10,
 	},
 	checkBox: {
 		width: 250,
 		padding: 10,
 		borderRadius: 50,
 		backgroundColor: "#DBF5F6",
-		marginTop: 10
+		marginTop: 10,
 	},
 	content: {
 		flexDirection: "row",
 		alignItems: "center",
 		paddingHorizontal: 4,
-		paddingVertical: 8
-	}
+		paddingVertical: 8,
+	},
 });
 
 export default VolMakeApplication;
