@@ -1,18 +1,18 @@
-import React, { useContext } from 'react';
-import { useState } from 'react';
-import { UserContext } from '../context/User';
-import { StyleSheet, View, Image } from 'react-native';
+import React, { useContext } from "react";
+import { useState } from "react";
+import { UserContext } from "../context/User";
+import { StyleSheet, View, Image } from "react-native";
 import {
   Button,
   Divider,
   Layout,
   TopNavigation,
   Input,
-  Avatar
-} from '@ui-kitten/components';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useEffect } from 'react';
-import { getUser } from '../utils/api';
+  Avatar,
+} from "@ui-kitten/components";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useEffect } from "react";
+import { getUser } from "../utils/api";
 
 // login page for volunteer/organisation - sign up pop up as well
 
@@ -24,21 +24,21 @@ const Login = React.memo(function Home({ navigation }) {
   // Hardcoding the user to be mercedes for demo purposes
   useEffect(() => {
     setUser({
-      username: 'Mercedes',
+      username: "Mercedes",
       avatar_url:
-        'https://gravatar.com/avatar/bc6705809d3d8d7dadcd5fb859a853ce?s=400&d=robohash&r=x',
-      firstname: 'Mer',
-      lastname: 'Lau',
+        "https://gravatar.com/avatar/bc6705809d3d8d7dadcd5fb859a853ce?s=400&d=robohash&r=x",
+      firstname: "Mer",
+      lastname: "Lau",
       dbs: 0,
       drive: 1,
-      email: 'mercedes@gmail.com',
-      password: 'password'
+      email: "mercedes@gmail.com",
+      password: "password",
     });
   }, []);
 
   const [login, setLogin] = useState({
-    userName: '',
-    password: ''
+    userName: "",
+    password: "",
   });
 
   // function to alter password in login state
@@ -78,7 +78,7 @@ const Login = React.memo(function Home({ navigation }) {
 
   // TEMPORARY HANDLE PRESSING LOGIN
   function handlePress() {
-    navigation.navigate('Homepage');
+    navigation.navigate("Homepage");
   }
 
   // username address and password inputs, login button and SignUp button
@@ -86,31 +86,31 @@ const Login = React.memo(function Home({ navigation }) {
   return (
     <>
       <SafeAreaView style={{ flex: 1 }}>
-        <TopNavigation title='MyApp' alignment='center' />
+        <TopNavigation title="" alignment="center" />
         <Divider />
         <Layout
-          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          <View style={{ flexDirection: 'row', height: 75 }}></View>
+          <View style={{ flexDirection: "row", height: 75 }}></View>
           <Image
-            source={require('../images/chariT-logos.jpeg')}
+            source={require("../images/chariT-logo-updated.jpeg")}
             style={{ width: 200, height: 200, borderRadius: 100 }}
           />
 
-          <View style={{ flex: 1, alignItems: 'center' }}>
+          <View style={{ flex: 1, alignItems: "center" }}>
             <Input
               style={styles.input}
-              placeholder='Username'
-              leftIcon={{ type: 'font-awesome', name: 'envelope' }}
+              placeholder="Username"
+              leftIcon={{ type: "font-awesome", name: "envelope" }}
               onChangeText={(e) => handleUsername(e)}
               value={login.username}
             />
 
             <Input
               style={styles.input}
-              placeholder='Password'
+              placeholder="Password"
               secureTextEntry={true}
-              leftIcon={{ type: 'font-awesome', name: 'key' }}
+              leftIcon={{ type: "font-awesome", name: "key" }}
               onChangeText={(e) => handlePassword(e)}
               value={login.password}
             />
@@ -120,7 +120,7 @@ const Login = React.memo(function Home({ navigation }) {
             <Button
               style={styles.button}
               onPress={() => {
-                navigation.navigate('SignUpForm');
+                navigation.navigate("SignUpForm");
               }}
             >
               Sign Up
@@ -137,12 +137,12 @@ const styles = StyleSheet.create({
     width: 200,
     marginTop: 10,
     padding: 5,
-    borderRadius: 50
+    borderRadius: 50,
   },
   input: { width: 300, marginTop: 4, padding: 5, borderRadius: 50 },
   container: {
-    minHeight: 128
-  }
+    minHeight: 128,
+  },
 });
 
 export default Login;

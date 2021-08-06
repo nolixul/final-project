@@ -24,7 +24,7 @@ const SingleOpportunity = () => {
 
 	function formattedDate(originalDate) {
 		const date = new Date(originalDate);
-		const month = date.getMonth();
+		const month = date.getMonth() + 1;
 		const resultMonth = month < 10 ? "0" + month : month;
 		const day = date.getDate();
 		const resultDay = day < 10 ? "0" + day : day;
@@ -40,12 +40,12 @@ const SingleOpportunity = () => {
 				<Layout style={styles.layout}>
 					<View style={{ flexDirection: "row", height: 20 }}></View>
 					<View style={styles.titleContainer}>
-						<Text status='control'>{opportunity.name}</Text>
+						<Text status="control">{opportunity.name}</Text>
 					</View>
 					<ScrollView>
 						<View style={styles.view}>
 							<View style={styles.interestsContainer}>
-								<Text status='control'>Details</Text>
+								<Text status="control">Details</Text>
 							</View>
 
 							<View style={styles.textContainer}>
@@ -60,7 +60,7 @@ const SingleOpportunity = () => {
 
 							<View style={styles.view}>
 								<View style={styles.interestsContainer}>
-									<Text status='control'>Requirements</Text>
+									<Text status="control">Requirements</Text>
 								</View>
 
 								<CheckBox checked={true} style={styles.checkBox}>
@@ -97,14 +97,14 @@ const styles = StyleSheet.create({
 		marginTop: 15,
 		marginBottom: 15,
 		padding: 5,
-		borderRadius: 50
+		borderRadius: 50,
 	},
 	checkBox: {
 		width: 300,
 		padding: 10,
 		borderRadius: 50,
 		backgroundColor: "#BAE9ED",
-		marginTop: 10
+		marginTop: 10,
 	},
 	interestsContainer: {
 		alignItems: "center",
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
 		padding: 5,
 		borderRadius: 50,
 		backgroundColor: "#5A8A97",
-		marginTop: 10
+		marginTop: 10,
 	},
 	titleContainer: {
 		alignItems: "center",
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
 		padding: 15,
 		borderRadius: 50,
 		backgroundColor: "#264653",
-		marginTop: 10
+		marginTop: 10,
 	},
 	textContainer: {
 		alignItems: "center",
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
 		padding: 10,
 		borderRadius: 50,
 		backgroundColor: "#BAE9ED",
-		marginTop: 10
+		marginTop: 10,
 	},
 	descriptionContainer: {
 		alignItems: "center",
@@ -136,8 +136,8 @@ const styles = StyleSheet.create({
 		padding: 20,
 		borderRadius: 25,
 		backgroundColor: "#BAE9ED",
-		marginTop: 10
-	}
+		marginTop: 10,
+	},
 });
 
 export default SingleOpportunity;

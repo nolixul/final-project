@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const charitAPI = axios.create({
-	baseURL: "https://7drjlfcqol.execute-api.eu-west-2.amazonaws.com/latest"
+	baseURL: "https://7drjlfcqol.execute-api.eu-west-2.amazonaws.com/latest",
 });
 
 const charitAPIOpps = axios.create({
 	baseURL:
-    "https://7drjlfcqol.execute-api.eu-west-2.amazonaws.com/latest/opportunities"
+    "https://7drjlfcqol.execute-api.eu-west-2.amazonaws.com/latest/opportunities",
 });
 
 export const getOpportunities = async (category) => {
@@ -35,7 +35,7 @@ export const getApplications = async (username) => {
 
 export const postApplication = async ({ username, opp_id }) => {
 	const { data } = await charitAPI.post("/application", {
-		params: { username, opp_id }
+		params: { username, opp_id },
 	});
 	return data;
 };
