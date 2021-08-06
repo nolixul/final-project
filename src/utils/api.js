@@ -44,3 +44,8 @@ export const getUser = async ({ username }) => {
 	const { data } = await charitAPI.get(`/users/${username}`);
 	return data.users[0];
 };
+
+export const getOpportunityByID = async (id) => {
+	const { data } = await charitAPI.get(`/opportunities/opportunity/${id}`);
+	return data.opportunity[0];
+};

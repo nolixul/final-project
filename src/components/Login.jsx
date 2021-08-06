@@ -7,7 +7,8 @@ import {
   Divider,
   Layout,
   TopNavigation,
-  Input
+  Input,
+  Avatar
 } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useEffect } from 'react';
@@ -90,13 +91,13 @@ const Login = React.memo(function Home({ navigation }) {
         <Layout
           style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
+          <View style={{ flexDirection: 'row', height: 75 }}></View>
           <Image
             source={require('../images/chariT-logos.jpeg')}
-            style={{ width: 400, height: 400 }}
+            style={{ width: 200, height: 200, borderRadius: 100 }}
           />
-          <View
-            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-          >
+
+          <View style={{ flex: 1, alignItems: 'center' }}>
             <Input
               style={styles.input}
               placeholder='Username'

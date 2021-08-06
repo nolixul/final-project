@@ -1,8 +1,9 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Input, Layout, Divider, Button, Text } from "@ui-kitten/components";
+import { Input, Layout, Divider, Text } from "@ui-kitten/components";
 import { View, StyleSheet } from "react-native";
 import CustomHeader from "../CustomHeader";
+import SubmitApplicationPopover from "../SubmitApplicationPopover";
 
 const OrganisationSUForm = () => {
 	return (
@@ -38,13 +39,7 @@ const OrganisationSUForm = () => {
 							/* onChangeText={(e) => handlePassword(e)} */
 							/* value={login.password} */
 						/>
-						<Button
-							style={styles.button}
-
-							/*   onPress={handleSubmit} */
-						>
-              Sign Up
-						</Button>
+						<SubmitApplicationPopover />
 					</View>
 				</Layout>
 			</SafeAreaView>

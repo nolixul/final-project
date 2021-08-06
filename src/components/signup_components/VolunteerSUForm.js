@@ -1,16 +1,10 @@
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-	Input,
-	Text,
-	CheckBox,
-	Button,
-	Divider,
-	Layout
-} from "@ui-kitten/components";
+import { Input, Text, CheckBox, Divider, Layout } from "@ui-kitten/components";
 import { View, StyleSheet } from "react-native";
 import CustomHeader from "../CustomHeader";
 import { ScrollView } from "react-native-gesture-handler";
+import SubmitApplicationPopover from "../SubmitApplicationPopover";
 
 const VolunteerSUForm = React.memo(function VolunteerSUForm() {
 	const [checkedCS, setCheckedCS] = useState(false);
@@ -65,6 +59,23 @@ const VolunteerSUForm = React.memo(function VolunteerSUForm() {
 								/* onChangeText={(e) => handlePassword(e)} */
 								/* value={login.password} */
 							/>
+							<View style={styles.interestsContainer}>
+								<Text status='control'>Licences</Text>
+							</View>
+							<CheckBox
+								checked={checkedDBS}
+								onChange={(nextChecked) => setCheckedDBS(nextChecked)}
+								style={styles.checkBox}
+							>
+								{(evaProps) => <Text {...evaProps}>DBS Check</Text>}
+							</CheckBox>
+							<CheckBox
+								checked={checkedDrive}
+								onChange={(nextChecked) => setCheckedDrive(nextChecked)}
+								style={styles.checkBox}
+							>
+								{(evaProps) => <Text {...evaProps}>Driving license</Text>}
+							</CheckBox>
 							<View style={styles.view}>
 								<View style={styles.interestsContainer}>
 									<Text status='control'>Interests</Text>
@@ -97,29 +108,8 @@ const VolunteerSUForm = React.memo(function VolunteerSUForm() {
 								>
 									{(evaProps) => <Text {...evaProps}>Animals</Text>}
 								</CheckBox>
-								<CheckBox
-									checked={checkedDBS}
-									onChange={(nextChecked) => setCheckedDBS(nextChecked)}
-									style={styles.checkBox}
-								>
-									{(evaProps) => <Text {...evaProps}>DBS Check</Text>}
-								</CheckBox>
-								<CheckBox
-									checked={checkedDrive}
-									onChange={(nextChecked) => setCheckedDrive(nextChecked)}
-									style={styles.checkBox}
-								>
-									{(evaProps) => <Text {...evaProps}>Driving license</Text>}
-								</CheckBox>
 							</View>
-
-							<Button
-								style={styles.button}
-
-								/*   onPress={handleSubmit} */
-							>
-                Sign Up
-							</Button>
+							<SubmitApplicationPopover />
 						</View>
 					</ScrollView>
 				</Layout>

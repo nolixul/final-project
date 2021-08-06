@@ -7,7 +7,7 @@ const SubmitApplicationPopover = () => {
 
 	const renderToggleButton = () => (
 		<Button style={styles.button} onPress={() => setVisible(true)}>
-      Submit Application
+      Submit
 		</Button>
 	);
 
@@ -18,7 +18,7 @@ const SubmitApplicationPopover = () => {
 			onBackdropPress={() => setVisible(false)}
 		>
 			<Layout style={styles.content}>
-				<Text>Application submitted!</Text>
+				<Text>Success!</Text>
 			</Layout>
 		</Popover>
 	);
@@ -31,7 +31,13 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 4,
 		paddingVertical: 8
 	},
-	button: { width: 250, marginTop: 10, padding: 5, borderRadius: 50 }
+	button: {
+		width: 250,
+		marginTop: 10,
+		marginBottom: 10,
+		padding: 5,
+		borderRadius: 50
+	}
 });
 
 export default SubmitApplicationPopover;
