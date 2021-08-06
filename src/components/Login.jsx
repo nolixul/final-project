@@ -86,7 +86,7 @@ const Login = React.memo(function Home({ navigation }) {
   return (
     <>
       <SafeAreaView style={{ flex: 1 }}>
-        <TopNavigation title="MyApp" alignment="center" />
+        <TopNavigation title="" alignment="center" />
         <Divider />
         <Layout
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
