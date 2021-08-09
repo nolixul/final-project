@@ -140,8 +140,8 @@ const DrawerContent = () => {
 							source={{
 								uri: "https://image.flaticon.com/icons/png/512/847/847969.png"
 							}}
-						/>{" "}
-					</Layout>{" "}
+						/>
+					</Layout>
 					<Layout style={{ flex: 1 }}>
 						<DrawerItem
 							title='Opportunities'

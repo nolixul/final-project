@@ -42,7 +42,7 @@ const VolApplication = () => {
 
 	function formattedDate(originalDate) {
 		const date = new Date(originalDate);
-		const month = date.getMonth();
+		const month = date.getMonth() + 1;
 		const resultMonth = month < 10 ? "0" + month : month;
 		const day = date.getDate();
 		const resultDay = day < 10 ? "0" + day : day;
